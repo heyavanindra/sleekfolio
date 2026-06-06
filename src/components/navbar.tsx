@@ -56,7 +56,7 @@ const Navbar = ({}) => {
           <div className="size-10 flex justify-center items-center">
            {/* <LogoSvg></LogoSvg> */}
           </div>
-          <div>FastInvo</div>
+          <div>Avi</div>
         </Link>
         <div className="">
             <ul className="flex justify-center items-center gap-x-6">
