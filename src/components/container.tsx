@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Footer from "@/sections/footer";
 import { cn } from "@/utils/cn";
 import Navbar from "./navbar";
 
@@ -11,7 +12,7 @@ const Container = ({ children, className }: ContainerProps) => {
   return (
     <div
       className={cn(
-        "relative h-screen  w-full max-w-4xl mx-auto bg-background-container md:px-8",
+        "relative mx-auto min-h-screen w-full max-w-4xl bg-background-container px-4 pt-20 md:px-8",
         className,
       )}
     >
@@ -20,6 +21,7 @@ const Container = ({ children, className }: ContainerProps) => {
       <Navbar></Navbar>
 
       {children}
+      <Footer></Footer>
     </div>
   );
 };

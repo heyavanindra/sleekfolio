@@ -3,25 +3,35 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: var(--color-neutral-200);
+  --background: var(--color-neutral-100);
   --background-container: var(--color-white);
+  --foreground: var(--color-neutral-950);
   --text-secondary: #909092;
   --pattern-fg: color-mix(in oklab, var(--color-neutral-950) 5%, transparent);
+  color-scheme: light;
 }
 
 @theme {
   --pattern-fg: var(--pattern-fg);
   --color-background: var(--background);
   --color-background-container: var(--background-container);
-  --color-text-secondary: var(--text-secondary)
-  --color-background-container: var(--background-container);
+  --color-foreground: var(--foreground);
+  --color-text-secondary: var(--text-secondary);
+  --shadow-section-inset:
+    0px 1px 4px 0px var(--color-neutral-100) inset, 0px -1px 4px 0px
+    var(--color-neutral-100) inset;
+  --shadow-section-inset-dark:
+    0px 1px 4px 0px var(--color-neutral-950) inset, 0px -1px 4px 0px
+    var(--color-neutral-950) inset;
 }
 
 .dark {
   --background: var(--color-black);
   --background-container: var(--color-neutral-900);
-  --text-secondary:#909092;
+  --foreground: var(--color-neutral-50);
+  --text-secondary: #909092;
   --pattern-fg: color-mix(in oklab, var(--color-neutral-100) 5%, transparent);
+  color-scheme: dark;
 }
 
 .text-secondary {

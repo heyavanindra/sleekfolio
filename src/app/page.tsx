@@ -1,15 +1,17 @@
 import Container from "@/components/container";
-import { ThemeToggle } from "@/components/theme-toggle";
-import {Hero} from "@/sections/hero"
+import BlogSection from "@/sections/blog";
+import Experience from "@/sections/experience";
+import { Hero } from "@/sections/hero";
+import Projects from "@/sections/projects";
 
 export default function Home() {
   return (
-    <main className="max-h-screen w-full bg-background">
+    <main className="min-h-screen w-full bg-background">
       <Container>
-        {/* <div className="relative z-10 flex justify-end p-6">
-          <ThemeToggle />
-        </div> */}
-        <Hero/>
+        <Hero />
+        <Projects></Projects>
+        <BlogSection></BlogSection>
+        <Experience></Experience>
       </Container>
     </main>
   );
