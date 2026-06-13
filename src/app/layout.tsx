@@ -4,8 +4,37 @@ import { siteConfig } from "@/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description,
+  title: "Avanindra Tiwari — Software Engineer",
+  description:
+    "Software engineer building real-time products and full-stack systems with React, Next.js, WebSockets, and modern backend technologies.",
+
+  metadataBase: new URL("https://aviii.xyz"),
+
+  openGraph: {
+    title: "Avanindra Tiwari — Software Engineer",
+    description:
+      "Software engineer building real-time products and full-stack systems.",
+    url: "https://aviii.xyz",
+    siteName: "Avanindra Tiwari",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Avanindra Tiwari Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Avanindra Tiwari — Software Engineer",
+    description:
+      "Software engineer building real-time products and full-stack systems.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
