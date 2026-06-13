@@ -1,0 +1,106 @@
+---
+title: "Next Js: Parallel routes"
+description: "Learn how to implement and optimize parallel routes in Next.js to create flexible layouts, improve performance, and enhance user experience."
+image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3"
+date: "2025-08-18"
+readingTime: "4 min read"
+tags: ["NextJs"]
+isPublished: true
+---
+
+So I was working on a project in **Next.js 15**.
+I had two components, each fetching data from different APIs.
+
+Everything was smooth until one of the APIs stopped responding.
+Suddenly, my **entire page got stuck in the loading state**. That's when I realized: if even one API is slow or fails, the whole UI becomes unusable.
+
+And that's when I discovered **Parallel Routes**.
+
+---
+
+### How it works
+
+1. Create two folders with the `@` prefix inside the parent folder. These are called **slots**.
+
+<CodeWindow title="page.tsx">
+
+```txt
+app/
+  dashboard/
+    page.tsx
+    @route1/
+      page.tsx
+    @route2/
+      page.tsx
+    layout.tsx
+    loading.tsx
+    error.tsx
+```
+
+</CodeWindow>
+
+2. Inside each slot, add a `page.tsx` like you normally would.
+3. Create a `layout.tsx` file at the root level.
+4. Inside the layout, receive both `route1` and `route2` as props, along with `children`.
+
+<CodeWindow title="@route1/page.tsx">
+
+```tsx
+// app/dashboard/@route1/page.tsx
+export default async function Route1() {
+  // imagine fetching from a news API
+  await new Promise((res) => setTimeout(res, 2000)); // fake delay
+  return <div>Latest News loaded!</div>;
+}
+```
+
+</CodeWindow>
+
+<CodeWindow title="@route2/page.tsx">
+
+```tsx
+// app/dashboard/@route2/page.tsx
+export default async function Route2() {
+  // imagine fetching from a stats API
+  await new Promise((res) => setTimeout(res, 4000)); // fake delay
+  return <div>Stats loaded!</div>;
+}
+```
+
+</CodeWindow>
+
+Now, both routes can have their own `loading.tsx` and `error.tsx`.
+If one route is slow or crashes, the other still loads perfectly fine.
+
+Your page won't be stuck anymore just because one API decides to take a nap.
+
+---
+
+## Code Snippet
+
+<CodeWindow title="layout.tsx">
+
+```tsx
+export default function RootLayout({
+  children,
+  route1,
+  route2,
+}: {
+  children: React.ReactNode;
+  route1: React.ReactNode;
+  route2: React.ReactNode;
+}) {
+  return (
+    <div className="flex">
+      <aside className="w-1/2 border-r p-4">{route1}</aside>
+      <aside className="w-1/2 p-4">{route2}</aside>
+      <main className="p-4">{children}</main>
+    </div>
+  );
+}
+```
+
+</CodeWindow>
+
+So next time an API ghosts you, don't let it freeze your UI.
+Use parallel routes and keep things running smoothly.
