@@ -3,19 +3,22 @@ import type { ComponentPropsWithoutRef } from "react";
 export const BlogComponents = {
   CodeWindow,
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="pt-4 text-2xl font-medium tracking-[-0.03em]" {...props} />
+    <h2
+      className="pt-4 text-2xl font-medium tracking-[-0.015em] text-pretty"
+      {...props}
+    />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="pt-3 text-xl font-medium tracking-[-0.02em]" {...props} />
+    <h3
+      className="pt-3 text-xl font-medium tracking-[-0.02em] text-pretty"
+      {...props}
+    />
   ),
   p: (props: ComponentPropsWithoutRef<"p">) => (
     <p className="text-base leading-8 text-foreground/85" {...props} />
   ),
   a: (props: ComponentPropsWithoutRef<"a">) => (
-    <a
-      className="text-accent underline underline-offset-4 transition-all duration-200 hover:text-foreground"
-      {...props}
-    />
+    <a className="content-link" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul className="space-y-3 text-base leading-7 text-secondary" {...props} />
@@ -38,12 +41,14 @@ export const BlogComponents = {
   code: (props: ComponentPropsWithoutRef<"code">) => (
     <code
       className="bg-border px-1.5 py-0.5 text-sm text-foreground"
+      translate="no"
       {...props}
     />
   ),
   pre: (props: ComponentPropsWithoutRef<"pre">) => (
     <pre
       className="overflow-x-auto rounded-md border border-border bg-black/30 p-4 text-sm leading-7 text-foreground corner-squircle"
+      translate="no"
       {...props}
     />
   ),

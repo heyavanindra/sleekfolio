@@ -10,21 +10,21 @@ export default function BlogPage() {
   const posts = getPublishedBlogPosts();
 
   return (
-    <main className="bg-background">
+    <main id="main-content" className="bg-background">
       <Container>
         <section className="pt-28 pb-24 md:pt-36">
           <Link
             href={blogPageConfig.backHref}
-            className="text-sm text-secondary transition-all duration-200 hover:text-foreground"
+            className="portfolio-link text-sm"
           >
             {blogPageConfig.backLabel}
           </Link>
 
           <div className="mt-10">
-            <h1 className="text-5xl font-medium tracking-[-0.04em] md:text-6xl">
+            <h1 className="text-5xl font-medium tracking-[-0.035em] text-balance md:text-6xl md:tracking-[-0.045em]">
               {blogPageConfig.heading}
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-secondary text-pretty">
               {blogPageConfig.description}
             </p>
           </div>
@@ -34,10 +34,10 @@ export default function BlogPage() {
               <article key={post.slug} className="py-8 first:pt-0">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group block transition-all duration-200 hover:text-foreground"
+                  className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-                    <h2 className="max-w-xl text-2xl font-medium tracking-[-0.03em] transition-all duration-200 group-hover:text-foreground">
+                    <h2 className="max-w-xl break-words text-2xl font-medium tracking-[-0.015em] transition-colors duration-150 ease-out group-hover:text-foreground text-pretty">
                       {post.frontmatter.title}
                     </h2>
                     <time

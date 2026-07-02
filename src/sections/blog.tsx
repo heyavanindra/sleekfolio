@@ -8,16 +8,13 @@ export default function Blog() {
   const hasMoreContent = posts.length > blogSectionConfig.viewMoreThreshold;
 
   return (
-    <section className="mt-24">
+    <section className="mt-20 md:mt-24">
       <div className="mb-8 flex items-center gap-4">
         <h2 className="text-xs font-medium uppercase tracking-[0.25em] text-secondary">
           {blogSectionConfig.label}
         </h2>
         <div className="h-px flex-1 bg-border" />
-        <Link
-          href={blogSectionConfig.href}
-          className="text-sm text-secondary transition-all duration-200 hover:text-foreground"
-        >
+        <Link href={blogSectionConfig.href} className="portfolio-link text-sm">
           {blogSectionConfig.allPostsLabel}
         </Link>
       </div>
@@ -27,7 +24,7 @@ export default function Blog() {
         <div className="flex items-center justify-start pt-3">
           <Link
             href={blogSectionConfig.href}
-            className="text-sm text-secondary transition-all duration-200 hover:text-foreground"
+            className="portfolio-link text-sm"
           >
             {blogSectionConfig.viewMoreLabel}
           </Link>

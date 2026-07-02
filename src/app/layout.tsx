@@ -1,7 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import { siteConfig } from "@/config";
 import "./globals.css";
+
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
   title: "Avanindra Tiwari — Software Engineer",
@@ -37,6 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#0d0d0d",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,8 +59,19 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className="h-full antialiased">
-        <body className="flex min-h-full flex-col">{children}</body>
+      <html
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      >
+        <body className="flex min-h-full flex-col">
+          <a
+            href="#main-content"
+            className="sr-only fixed top-3 left-3 z-50 rounded-sm bg-foreground px-3 py-2 text-sm font-medium text-background focus-visible:not-sr-only focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            Skip to main content
+          </a>
+          {children}
+        </body>
       </html>
     </ViewTransitions>
   );

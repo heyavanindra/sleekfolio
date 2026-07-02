@@ -7,7 +7,7 @@ import Projects from "@/sections/projects";
 
 export default function Home() {
   return (
-    <div className="overflow-x-hidden bg-background">
+    <main id="main-content" className="overflow-x-hidden bg-background">
       <Container>
         <Hero />
         <Projects />
@@ -15,6 +15,6 @@ export default function Home() {
         <Blog />
         <Footer />
       </Container>
-    </div>
+    </main>
   );
 }

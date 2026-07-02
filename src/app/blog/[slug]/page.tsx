@@ -49,12 +49,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="bg-background">
+    <main id="main-content" className="bg-background">
       <Container>
         <article className="pt-28 pb-24 md:pt-36">
           <Link
             href={blogPostConfig.backHref}
-            className="text-sm text-secondary transition-all duration-200 hover:text-foreground"
+            className="portfolio-link text-sm"
           >
             {blogPostConfig.backLabel}
           </Link>
@@ -65,17 +65,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span
                   key={tag}
                   className="rounded-md border border-border px-2 py-1 text-xs text-secondary corner-squircle"
+                  translate="no"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h1 className="mt-6 text-4xl font-medium tracking-[-0.04em] md:text-6xl">
+            <h1 className="mt-6 break-words text-4xl font-medium tracking-[-0.035em] text-balance md:text-6xl md:tracking-[-0.045em]">
               {post.frontmatter.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/80">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/80 text-pretty">
               {post.frontmatter.description}
             </p>
 

@@ -7,6 +7,7 @@
   --secondary: #a1a1aa;
   --accent: #8b7cf8;
   --border: #222222;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -15,8 +16,8 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-mono: "Courier New", Courier, monospace;
+  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-geist-mono), "Courier New", Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,4 +34,42 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: color-mix(
+    in oklab,
+    var(--accent) 28%,
+    transparent
+  );
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 40%, transparent);
+  color: var(--foreground);
+}
+
+.portfolio-link {
+  color: var(--secondary);
+  transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.portfolio-link:hover {
+  color: var(--foreground);
+}
+
+.portfolio-link:focus-visible,
+.content-link:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.content-link {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+  transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content-link:hover {
+  color: var(--foreground);
 }

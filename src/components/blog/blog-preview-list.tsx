@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Link } from "next-view-transitions";
 import type { BlogPostPreview } from "@/types/blog";
 
@@ -10,46 +9,40 @@ type BlogPreviewListProps = {
 
 export function BlogPreviewList({ posts }: BlogPreviewListProps) {
   const visiblePosts = posts.slice(0, 3);
+
+  if (visiblePosts.length === 0) {
+    return (
+      <p className="border-t border-border pt-7 text-base leading-7 text-secondary">
+        No posts published yet.
+      </p>
+    );
+  }
+
   return (
     <div className="divide-y divide-border">
       {visiblePosts.map((post) => (
-        <motion.article
-          key={post.slug}
-          initial="rest"
-          whileHover="hover"
-          className="overflow-hidden py-7 first:pt-0"
-        >
+        <article key={post.slug} className="overflow-hidden py-7 first:pt-0">
           <Link
             href={`/blog/${post.slug}`}
-            className="group block transition-all duration-200 hover:text-foreground"
+            className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
-            <motion.div className="flex min-w-0 flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-              <motion.h3
-                variants={{
-                  rest: { x: 0, color: "var(--color-foreground)" },
-                  hover: { x: 10, color: "var(--color-foreground)" },
-                }}
-                transition={{
-                  duration: 0.22,
-                  ease: "easeInOut",
-                }}
-                className="max-w-xl break-words text-xl font-medium tracking-[-0.03em]"
-              >
+            <div className="flex min-w-0 flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
+              <h3 className="max-w-xl break-words text-xl font-medium tracking-[-0.015em] transition-transform duration-150 ease-out text-pretty motion-safe:group-hover:translate-x-1.5">
                 {post.frontmatter.title}
-              </motion.h3>
+              </h3>
               <time
                 dateTime={post.frontmatter.date}
                 className="shrink-0 text-sm text-secondary"
               >
                 {formatPostDate(post.frontmatter.date)}
               </time>
-            </motion.div>
+            </div>
 
             <p className="mt-4 max-w-xl break-words text-base leading-7 text-foreground/80">
               {post.frontmatter.description}
             </p>
           </Link>
-        </motion.article>
+        </article>
       ))}
     </div>
   );
@@ -59,6 +52,7 @@ function formatPostDate(date: string) {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
+    timeZone: "UTC",
     year: "numeric",
   }).format(new Date(date));
 }

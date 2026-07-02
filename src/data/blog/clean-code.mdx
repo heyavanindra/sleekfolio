@@ -1,20 +1,19 @@
 ---
-title: "Next Js: Parallel routes"
+title: "Next.js: Parallel Routes"
 description: "Learn how to implement and optimize parallel routes in Next.js to create flexible layouts, improve performance, and enhance user experience."
 image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3"
 date: "2025-08-18"
 readingTime: "4 min read"
-tags: ["NextJs"]
+tags: ["Next.js"]
 isPublished: true
 ---
 
-So I was working on a project in **Next.js 15**.
-I had two components, each fetching data from different APIs.
+Imagine a dashboard in **Next.js 15** with two components, each fetching data from different APIs.
 
-Everything was smooth until one of the APIs stopped responding.
-Suddenly, my **entire page got stuck in the loading state**. That's when I realized: if even one API is slow or fails, the whole UI becomes unusable.
+Everything feels smooth until one of the APIs stops responding.
+Suddenly, the **entire page gets stuck in the loading state**. If even one API is slow or fails, the whole UI becomes unusable.
 
-And that's when I discovered **Parallel Routes**.
+That's where **Parallel Routes** help.
 
 ---
 
@@ -102,5 +101,5 @@ export default function RootLayout({
 
 </CodeWindow>
 
-So next time an API ghosts you, don't let it freeze your UI.
-Use parallel routes and keep things running smoothly.
+When one API fails or slows down, keep the rest of the UI available.
+Use parallel routes to keep each part of the page running independently.

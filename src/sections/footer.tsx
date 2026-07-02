@@ -2,7 +2,7 @@ import { footerConfig } from "@/config";
 
 const Footer = () => {
   return (
-    <footer className="mt-24 pb-16">
+    <footer className="mt-20 pb-16 md:mt-24">
       <div className="mb-8 flex min-w-0 items-center gap-4">
         <h2 className="shrink-0 text-xs font-medium uppercase tracking-[0.25em] text-secondary">
           {footerConfig.section.label}
@@ -16,11 +16,7 @@ const Footer = () => {
 
       <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm text-secondary">
         {footerConfig.links.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            className="transition-all duration-200 hover:text-foreground"
-          >
+          <a key={label} href={href} className="portfolio-link">
             {label}
           </a>
         ))}
