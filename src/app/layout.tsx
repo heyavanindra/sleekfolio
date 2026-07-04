@@ -1,16 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 
-const geistSans = Geist({
+const inter = Inter({
+  display: "swap",
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
+const jetBrainsMono = JetBrains_Mono({
+  display: "swap",
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +63,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+        className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
       >
         <body className="flex min-h-full flex-col">
           <a

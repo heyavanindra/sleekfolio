@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
 
             <div className="type-meta mt-6 flex flex-wrap gap-3">
-              <time dateTime={post.frontmatter.date}>
+              <time dateTime={post.frontmatter.date} className="type-meta">
                 {formatPostDate(post.frontmatter.date)}
               </time>
               <span>/</span>

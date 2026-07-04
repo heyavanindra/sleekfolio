@@ -16,8 +16,8 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-mono: var(--font-geist-mono), "Courier New", Courier, monospace;
+  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "Courier New", Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +35,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   font-size: 16px;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   line-height: 1.5;
   touch-action: manipulation;
   -webkit-tap-highlight-color: color-mix(
@@ -133,7 +134,7 @@ body {
 
 .type-meta {
   color: var(--secondary);
-  font-family: var(--font-geist-mono), "Courier New", Courier, monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 400;
   letter-spacing: 0;
@@ -143,7 +144,7 @@ body {
 
 .type-caption {
   color: var(--secondary);
-  font-family: var(--font-geist-mono), "Courier New", Courier, monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0;
