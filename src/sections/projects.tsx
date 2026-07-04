@@ -16,11 +16,11 @@ export default function Projects() {
           <article key={project.title} className="py-10 first:pt-0 md:py-12">
             <div className="flex min-w-0 flex-col gap-5 md:flex-row md:justify-between md:gap-8">
               <div className="min-w-0">
-                <h3 className="max-w-full break-words text-2xl font-medium tracking-[-0.015em] text-foreground text-pretty md:text-3xl md:tracking-[-0.025em]">
+                <h3 className="max-w-full break-words text-xl font-medium tracking-[-0.015em] text-foreground text-pretty md:text-2xl md:tracking-[-0.025em]">
                   {project.title}
                 </h3>
 
-                <p className="mt-4 max-w-xl break-words text-base leading-relaxed text-secondary text-pretty">
+                <p className="mt-4 max-w-xl break-words text-base md:text-lg leading-normal text-secondary text-pretty">
                   {project.description}
                 </p>
 

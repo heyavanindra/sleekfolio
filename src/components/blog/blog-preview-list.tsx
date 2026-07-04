@@ -27,7 +27,7 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
             className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             <div className="flex min-w-0 flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-              <h3 className="max-w-xl break-words text-xl font-medium tracking-[-0.015em] transition-transform duration-150 ease-out text-pretty motion-safe:group-hover:translate-x-1.5">
+              <h3 className="max-w-xl break-words text-xl md:text-2xl font-medium tracking-[-0.015em] transition-transform duration-150 ease-out text-pretty motion-safe:group-hover:translate-x-1.5">
                 {post.frontmatter.title}
               </h3>
               <time

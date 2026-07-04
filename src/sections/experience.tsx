@@ -4,7 +4,7 @@ const Experience = () => {
   return (
     <section className="mt-20 md:mt-24">
       <div className="mb-8 flex min-w-0 items-center gap-4">
-        <h2 className="shrink-0 text-xs font-medium uppercase tracking-[0.25em] text-secondary">
+        <h2 className="shrink-0 font-medium uppercase tracking-[0.25em] text-secondary">
           {experienceConfig.section.label}
         </h2>
         <div className="h-px flex-1 bg-border" />
@@ -15,7 +15,7 @@ const Experience = () => {
           <article key={experience.company} className="py-8">
             <div className="flex min-w-0 flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
               <div className="min-w-0">
-                <h3 className="break-words text-xl font-semibold tracking-[-0.015em] text-foreground text-pretty">
+                <h3 className="break-words text-xl md:text-2xl  font-semibold tracking-[-0.015em] text-foreground text-pretty">
                   {experience.company}
                 </h3>
 
@@ -36,9 +36,9 @@ const Experience = () => {
                     <li key={highlight.text}>
                       {highlight.emphasize
                         ? renderHighlightedText(
-                            highlight.text,
-                            highlight.emphasize,
-                          )
+                          highlight.text,
+                          highlight.emphasize,
+                        )
                         : highlight.text}
                     </li>
                   ))}
