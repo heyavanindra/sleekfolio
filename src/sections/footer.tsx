@@ -1,3 +1,4 @@
+import { SocialLinks } from "@/components/social-links";
 import { footerConfig } from "@/config";
 
 const Footer = () => {
@@ -14,12 +15,8 @@ const Footer = () => {
         {footerConfig.description}
       </p>
 
-      <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm text-secondary">
-        {footerConfig.links.map(({ label, href }) => (
-          <a key={label} href={href} className="portfolio-link">
-            {label}
-          </a>
-        ))}
+      <div className="mt-6">
+        <SocialLinks links={footerConfig.links} />
       </div>
 
       <p className="mt-12 text-xs text-secondary">{footerConfig.copyright}</p>
