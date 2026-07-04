@@ -7,7 +7,10 @@ import Projects from "@/sections/projects";
 
 export default function Home() {
   return (
-    <main id="main-content" className="overflow-x-hidden bg-background">
+    <main
+      id="main-content"
+      className="animate-blur-in overflow-x-hidden bg-background"
+    >
       <Container>
         <Hero />
         <Projects />
