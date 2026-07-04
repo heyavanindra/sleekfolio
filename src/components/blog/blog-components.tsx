@@ -3,38 +3,29 @@ import type { ComponentPropsWithoutRef } from "react";
 export const BlogComponents = {
   CodeWindow,
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2
-      className="pt-4 text-2xl font-medium tracking-[-0.015em] text-pretty"
-      {...props}
-    />
+    <h2 className="type-section-label pt-4 text-pretty" {...props} />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3
-      className="pt-3 text-xl font-medium tracking-[-0.02em] text-pretty"
-      {...props}
-    />
+    <h3 className="type-item-title pt-3 text-pretty" {...props} />
   ),
   p: (props: ComponentPropsWithoutRef<"p">) => (
-    <p className="text-base leading-8 text-foreground/85" {...props} />
+    <p className="type-prose" {...props} />
   ),
   a: (props: ComponentPropsWithoutRef<"a">) => (
     <a className="content-link" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
-    <ul className="space-y-3 text-base leading-7 text-secondary" {...props} />
+    <ul className="type-prose space-y-3" {...props} />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
-    <ol
-      className="list-decimal space-y-3 pl-5 text-base leading-7 text-secondary"
-      {...props}
-    />
+    <ol className="type-prose list-decimal space-y-3 pl-5" {...props} />
   ),
   li: (props: ComponentPropsWithoutRef<"li">) => (
     <li className="pl-1 marker:text-accent" {...props} />
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="border-l border-accent pl-5 text-base leading-8 text-secondary"
+      className="type-prose border-l border-accent pl-5 text-secondary"
       {...props}
     />
   ),
@@ -47,7 +38,7 @@ export const BlogComponents = {
   ),
   pre: (props: ComponentPropsWithoutRef<"pre">) => (
     <pre
-      className="overflow-x-auto rounded-md border border-border bg-black/30 p-4 text-sm leading-7 text-foreground corner-squircle"
+      className="overflow-x-auto rounded-md border border-border bg-black/30 p-4 font-mono text-sm leading-7 text-foreground corner-squircle"
       translate="no"
       {...props}
     />

@@ -10,11 +10,11 @@ export default function Blog() {
   return (
     <section className="mt-20 md:mt-24">
       <div className="mb-8 flex items-center gap-4">
-        <h2 className="text-xs font-medium uppercase tracking-[0.25em] text-secondary">
+        <h2 className="type-section-label shrink-0">
           {blogSectionConfig.label}
         </h2>
         <div className="h-px flex-1 bg-border" />
-        <Link href={blogSectionConfig.href} className="portfolio-link text-sm">
+        <Link href={blogSectionConfig.href} className="portfolio-link">
           {blogSectionConfig.allPostsLabel}
         </Link>
       </div>
@@ -22,10 +22,7 @@ export default function Blog() {
       <BlogPreviewList posts={posts} />
       {hasMoreContent && (
         <div className="flex items-center justify-start pt-3">
-          <Link
-            href={blogSectionConfig.href}
-            className="portfolio-link text-sm"
-          >
+          <Link href={blogSectionConfig.href} className="portfolio-link">
             {blogSectionConfig.viewMoreLabel}
           </Link>
         </div>

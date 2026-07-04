@@ -4,7 +4,7 @@ const Experience = () => {
   return (
     <section className="mt-20 md:mt-24">
       <div className="mb-8 flex min-w-0 items-center gap-4">
-        <h2 className="shrink-0 font-medium uppercase tracking-[0.25em] text-secondary">
+        <h2 className="type-section-label shrink-0">
           {experienceConfig.section.label}
         </h2>
         <div className="h-px flex-1 bg-border" />
@@ -15,15 +15,15 @@ const Experience = () => {
           <article key={experience.company} className="py-8">
             <div className="flex min-w-0 flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
               <div className="min-w-0">
-                <h3 className="break-words text-xl md:text-2xl  font-semibold tracking-[-0.015em] text-foreground text-pretty">
+                <h3 className="type-item-title break-words text-pretty">
                   {experience.company}
                 </h3>
 
                 <div className="mt-3 flex flex-col gap-y-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-3">
-                  <p className="break-words text-lg font-medium tracking-[-0.015em] text-foreground">
+                  <p className="break-words text-base font-medium leading-6 text-foreground">
                     {experience.role}
                   </p>
-                  <p className="break-words text-base text-secondary sm:text-lg">
+                  <p className="type-meta break-words">
                     {formatExperiencePeriod(
                       experience.startDate,
                       experience.endDate,
@@ -31,14 +31,14 @@ const Experience = () => {
                   </p>
                 </div>
 
-                <ul className="mt-5 max-w-3xl space-y-2 break-words text-sm leading-7 text-secondary">
+                <ul className="type-body mt-5 max-w-3xl space-y-2 break-words">
                   {experience.highlights.map((highlight) => (
                     <li key={highlight.text}>
                       {highlight.emphasize
                         ? renderHighlightedText(
-                          highlight.text,
-                          highlight.emphasize,
-                        )
+                            highlight.text,
+                            highlight.emphasize,
+                          )
                         : highlight.text}
                     </li>
                   ))}

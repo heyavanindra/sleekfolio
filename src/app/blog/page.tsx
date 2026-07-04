@@ -13,18 +13,15 @@ export default function BlogPage() {
     <main id="main-content" className="bg-background">
       <Container>
         <section className="pt-28 pb-24 md:pt-36">
-          <Link
-            href={blogPageConfig.backHref}
-            className="portfolio-link text-sm"
-          >
+          <Link href={blogPageConfig.backHref} className="portfolio-link">
             {blogPageConfig.backLabel}
           </Link>
 
           <div className="mt-10">
-            <h1 className="text-5xl font-medium tracking-[-0.035em] text-balance md:text-6xl md:tracking-[-0.045em]">
+            <h1 className="type-page-title text-balance">
               {blogPageConfig.heading}
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-secondary text-pretty">
+            <p className="type-body mt-6 max-w-xl text-pretty">
               {blogPageConfig.description}
             </p>
           </div>
@@ -37,22 +34,22 @@ export default function BlogPage() {
                   className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-                    <h2 className="max-w-xl break-words text-2xl font-medium tracking-[-0.015em] transition-colors duration-150 ease-out group-hover:text-foreground text-pretty">
+                    <h2 className="type-item-title max-w-xl break-words transition-colors duration-150 ease-out text-pretty group-hover:text-foreground">
                       {post.frontmatter.title}
                     </h2>
                     <time
                       dateTime={post.frontmatter.date}
-                      className="shrink-0 text-sm text-secondary"
+                      className="type-meta shrink-0"
                     >
                       {formatPostDate(post.frontmatter.date)}
                     </time>
                   </div>
 
-                  <p className="mt-4 max-w-xl text-base leading-7 text-foreground/80">
+                  <p className="type-body mt-3 max-w-xl">
                     {post.frontmatter.description}
                   </p>
 
-                  <p className="mt-4 text-sm text-secondary">
+                  <p className="type-meta mt-4">
                     {post.frontmatter.readingTime}
                   </p>
                 </Link>

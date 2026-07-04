@@ -52,10 +52,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <main id="main-content" className="bg-background">
       <Container>
         <article className="pt-28 pb-24 md:pt-36">
-          <Link
-            href={blogPostConfig.backHref}
-            className="portfolio-link text-sm"
-          >
+          <Link href={blogPostConfig.backHref} className="portfolio-link">
             {blogPostConfig.backLabel}
           </Link>
 
@@ -64,7 +61,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.frontmatter.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-md border border-border px-2 py-1 text-xs text-secondary corner-squircle"
+                  className="type-caption rounded-md border border-border px-2 py-1 corner-squircle"
                   translate="no"
                 >
                   {tag}
@@ -72,15 +69,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               ))}
             </div>
 
-            <h1 className="mt-6 break-words text-4xl font-medium tracking-[-0.035em] text-balance md:text-6xl md:tracking-[-0.045em]">
+            <h1 className="type-page-title mt-6 break-words text-balance">
               {post.frontmatter.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/80 text-pretty">
+            <p className="type-body-lg mt-6 max-w-2xl text-pretty">
               {post.frontmatter.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-secondary">
+            <div className="type-meta mt-6 flex flex-wrap gap-3">
               <time dateTime={post.frontmatter.date}>
                 {formatPostDate(post.frontmatter.date)}
               </time>
