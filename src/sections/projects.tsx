@@ -1,4 +1,5 @@
 import { Link } from "next-view-transitions";
+import { ProjectTechIcon } from "@/components/project-tech-icon";
 import { projectsConfig } from "@/config";
 
 export default function Projects() {
@@ -24,18 +25,14 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <p className="type-meta mt-4 flex max-w-full flex-wrap gap-x-2 gap-y-1">
-                  {project.stack.map((item, index) => (
-                    <span key={item} className="break-words" translate="no">
-                      {index > 0 && (
-                        <span className="mr-2" aria-hidden="true">
-                          {"\u00b7"}
-                        </span>
-                      )}
-                      {item}
-                    </span>
+                <ul
+                  className="mt-5 flex max-w-full flex-wrap gap-2"
+                  aria-label={`${project.title} tech stack`}
+                >
+                  {project.stack.map((item) => (
+                    <ProjectTechIcon key={item} name={item} />
                   ))}
-                </p>
+                </ul>
               </div>
 
               <div className="flex flex-wrap gap-x-4 gap-y-2 md:shrink-0 md:pt-1">
