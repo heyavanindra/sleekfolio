@@ -10,7 +10,7 @@ export const projectsConfig = {
     {
       title: "TheCoffeeRoom",
       description:
-        "Collaborative canvas for drawing, brainstorming and creating together in real time.",
+        "Real-time collaborative whiteboard built with WebSockets, Redis, and PostgreSQL for low-latency multiplayer collaboration.",
       stack: ["Next.js", "WebSockets", "Redis", "PostgreSQL"],
       live: "https://thecoffeeroom.in",
       github: "https://github.com/heyavanindra/thecoffeeroom",
@@ -18,7 +18,7 @@ export const projectsConfig = {
     {
       title: "FastInvo",
       description:
-        "Generate invoices instantly with live previews and dynamic form building.",
+        "Invoice generation platform with live PDF previews, dynamic forms, and schema-driven validation.",
       stack: ["Next.js", "TypeScript", "React Hook Form", "Bun"],
       live: "https://fastinvo.aviii.xyz",
       github: "https://github.com/heyavanindra/fastinvo",

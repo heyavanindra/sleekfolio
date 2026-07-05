@@ -5,7 +5,7 @@ export const heroConfig = {
   headline:
     "Software engineer building real-time products and full-stack systems.",
   description:
-    "Build fast interfaces, real-time systems, and products that feel simple to use.",
+    "I build full-stack applications with modern web technologies, focusing on scalable backends, real-time systems, and interfaces people genuinely enjoy using.",
   links: [
     {
       icon: "github",

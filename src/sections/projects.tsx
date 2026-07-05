@@ -1,5 +1,5 @@
 import { Link } from "next-view-transitions";
-import { ProjectTechIcon } from "@/components/project-tech-icon";
+import { ProjectTechAvatarGroup } from "@/components/project-tech-avatar-group";
 import { projectsConfig } from "@/config";
 
 export default function Projects() {
@@ -25,14 +25,10 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <ul
-                  className="mt-5 flex max-w-full flex-wrap gap-2"
-                  aria-label={`${project.title} tech stack`}
-                >
-                  {project.stack.map((item) => (
-                    <ProjectTechIcon key={item} name={item} />
-                  ))}
-                </ul>
+                <ProjectTechAvatarGroup
+                  label={`${project.title} tech stack`}
+                  stack={project.stack}
+                />
               </div>
 
               <div className="flex flex-wrap gap-x-4 gap-y-2 md:shrink-0 md:pt-1">
