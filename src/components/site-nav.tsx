@@ -31,26 +31,6 @@ export function SiteNav() {
                 {item.label}
               </Link>
             ))}
-
-            <span
-              className="theme-indicator"
-              role="img"
-              aria-label="Dark theme"
-            >
-              <svg
-                aria-hidden="true"
-                className="size-4"
-                fill="none"
-                focusable="false"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.8"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20.4 14.9A8.6 8.6 0 0 1 9.1 3.6 8.6 8.6 0 1 0 20.4 14.9Z" />
-              </svg>
-            </span>
           </div>
         </nav>
       </Container>

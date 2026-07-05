@@ -25,8 +25,8 @@ export function ProjectTechIcon({ name }: ProjectTechIconProps) {
     <li className="project-tech-icon" title={name}>
       <StackIcon
         name={iconName}
-        variant="dark"
-        className="size-5 opacity-75 grayscale"
+        variant="grayscale"
+        className="project-tech-icon-svg size-5"
       />
       <span className="sr-only">{name}</span>
     </li>
