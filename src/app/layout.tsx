@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
-
+import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({
   display: "swap",
   subsets: ["latin"],
@@ -72,6 +72,7 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
+          <Analytics></Analytics>
           {children}
         </body>
       </html>
