@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
 import Container from "@/component/container";
 import { BlogContent } from "@/components/blog/blog-content";
+import { SiteNav } from "@/components/site-nav";
 import { blogPostConfig } from "@/config";
 import {
   formatPostDate,
@@ -49,9 +50,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main id="main-content" className="bg-background">
+    <main id="main-content" className="portfolio-grid-background">
+      <SiteNav />
       <Container>
-        <article className="pt-28 pb-24 md:pt-36">
+        <article className="pt-14 pb-24 md:pt-16">
           <Link href={blogPostConfig.backHref} className="portfolio-link">
             {blogPostConfig.backLabel}
           </Link>

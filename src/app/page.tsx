@@ -1,4 +1,5 @@
 import Container from "@/component/container";
+import { SiteNav } from "@/components/site-nav";
 import Blog from "@/sections/blog";
 import Experience from "@/sections/experience";
 import Footer from "@/sections/footer";
@@ -9,8 +10,9 @@ export default function Home() {
   return (
     <main
       id="main-content"
-      className="animate-blur-in overflow-x-hidden bg-background"
+      className="portfolio-grid-background animate-blur-in overflow-x-hidden"
     >
+      <SiteNav />
       <Container>
         <Hero />
         <Projects />

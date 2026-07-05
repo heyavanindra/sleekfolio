@@ -3,7 +3,7 @@ import { heroConfig } from "@/config";
 
 const Hero = () => {
   return (
-    <section className="pt-20 md:pt-24">
+    <section className="pt-14 md:pt-16">
       <p className="type-page-title max-w-full break-words text-pretty">
         {heroConfig.name}
       </p>

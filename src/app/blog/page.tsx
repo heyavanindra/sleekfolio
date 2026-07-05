@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import Container from "@/component/container";
+import { SiteNav } from "@/components/site-nav";
 import { blogPageConfig } from "@/config";
 import { formatPostDate, getPublishedBlogPosts } from "@/lib/blog";
 
@@ -10,9 +11,10 @@ export default function BlogPage() {
   const posts = getPublishedBlogPosts();
 
   return (
-    <main id="main-content" className="bg-background">
+    <main id="main-content" className="portfolio-grid-background">
+      <SiteNav />
       <Container>
-        <section className="pt-28 pb-24 md:pt-36">
+        <section className="pt-14 pb-24 md:pt-16">
           <Link href={blogPageConfig.backHref} className="portfolio-link">
             {blogPageConfig.backLabel}
           </Link>

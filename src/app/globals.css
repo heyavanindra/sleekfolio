@@ -50,6 +50,38 @@ body {
   color: var(--foreground);
 }
 
+.portfolio-grid-background {
+  min-height: 100vh;
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in oklab, var(--background) 16%, transparent) 0 28rem,
+      var(--background) 74rem
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--background) 30%, transparent) 0%,
+      color-mix(in oklab, var(--background) 62%, transparent) 46%,
+      var(--background) 86%
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--foreground) 7%, transparent) 1px,
+      transparent 1px
+    ), var(--background);
+  background-position:
+    center top,
+    0 0,
+    0 0,
+    0 0;
+  background-size:
+    100% 100%,
+    100% 100%,
+    30px 30px,
+    auto;
+}
+
 .animate-blur-in {
   opacity: 0;
   animation: 280ms cubic-bezier(0.23, 1, 0.32, 1) forwards blurIn;
@@ -163,6 +195,8 @@ body {
 }
 
 .portfolio-link {
+  display: inline-flex;
+  align-items: baseline;
   color: var(--secondary);
   font-size: 0.9375rem;
   line-height: 1.5;
@@ -170,7 +204,11 @@ body {
   text-decoration-color: color-mix(in oklab, var(--secondary) 55%, transparent);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(0);
+  transition:
+    color 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    text-decoration-color 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .portfolio-link:hover {
@@ -179,10 +217,73 @@ body {
 }
 
 .portfolio-link:focus-visible,
-.content-link:focus-visible {
+.content-link:focus-visible,
+.site-brand-mark:focus-visible,
+.site-nav-link:focus-visible {
   border-radius: 4px;
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+
+.site-brand-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  color: var(--foreground);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transform: translateY(0);
+  transition:
+    color 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.site-brand-mark::after,
+.site-nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.125rem;
+  left: 0;
+  height: 1px;
+  background: color-mix(in oklab, var(--foreground) 48%, transparent);
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  transition:
+    opacity 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.site-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  color: var(--secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  transform: translateY(0);
+  transition:
+    color 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.theme-indicator {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary);
+  pointer-events: none;
+  transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .content-link {
@@ -196,6 +297,42 @@ body {
 
 .content-link:hover {
   color: var(--secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-brand-mark:hover,
+  .site-nav-link:hover {
+    color: var(--foreground);
+  }
+
+  .site-nav-items:hover .theme-indicator {
+    color: var(--foreground);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (
+    prefers-reduced-motion: no-preference
+  ) {
+  .portfolio-link:hover {
+    transform: translateY(-1px);
+  }
+
+  .site-brand-mark:hover,
+  .site-nav-link:hover {
+    transform: translateY(-1px);
+  }
+
+  .site-brand-mark:hover::after,
+  .site-nav-link:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.portfolio-link:active,
+.site-brand-mark:active,
+.site-nav-link:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .fine-hover-shift {
@@ -237,6 +374,31 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .portfolio-link {
+    transform: none;
+    transition:
+      color 150ms ease-out,
+      text-decoration-color 150ms ease-out;
+  }
+
+  .site-brand-mark,
+  .site-nav-link,
+  .theme-indicator {
+    transform: none;
+    transition: color 150ms ease-out;
+  }
+
+  .site-brand-mark::after,
+  .site-nav-link::after {
+    transition: none;
+  }
+
+  .portfolio-link:active,
+  .site-brand-mark:active,
+  .site-nav-link:active {
+    transform: none;
+  }
+
   .fine-hover-shift {
     transition: none;
   }
