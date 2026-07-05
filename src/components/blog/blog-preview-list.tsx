@@ -24,24 +24,23 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
         <article key={post.slug} className="overflow-hidden py-7 first:pt-0">
           <Link
             href={`/blog/${post.slug}`}
-            className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
-            <div className="flex min-w-0 flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-              <h3 className="fine-hover-shift type-item-title max-w-xl break-words text-pretty">
-                {post.frontmatter.title}
-              </h3>
-              <time
-                dateTime={post.frontmatter.date}
-                className="type-meta shrink-0"
-              >
-                {formatPostDate(post.frontmatter.date)}
-              </time>
-            </div>
-
-            <p className="type-body mt-3 max-w-xl break-words">
-              {post.frontmatter.description}
-            </p>
+            <h3 className="fine-hover-shift type-item-title max-w-xl break-words text-pretty">
+              {post.frontmatter.title}
+            </h3>
           </Link>
+
+          <time
+            dateTime={post.frontmatter.date}
+            className="type-meta mt-3 block"
+          >
+            {formatPostDate(post.frontmatter.date)}
+          </time>
+
+          <p className="type-body mt-3 max-w-xl break-words">
+            {post.frontmatter.description}
+          </p>
         </article>
       ))}
     </div>

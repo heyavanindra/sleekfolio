@@ -10,6 +10,10 @@ const navItems = [
     label: "Writing",
     href: "/blog",
   },
+  {
+    label: "Contact",
+    href: "/#contact",
+  },
 ] as const;
 
 export function SiteNav() {

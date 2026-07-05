@@ -1,5 +1,6 @@
 import Container from "@/component/container";
 import { SiteNav } from "@/components/site-nav";
+import About from "@/sections/about";
 import Blog from "@/sections/blog";
 import Experience from "@/sections/experience";
 import Footer from "@/sections/footer";
@@ -15,6 +16,7 @@ export default function Home() {
       <SiteNav />
       <Container>
         <Hero />
+        {/* <About /> */}
         <Projects />
         <Experience />
         <Blog />

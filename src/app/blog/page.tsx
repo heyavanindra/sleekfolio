@@ -33,28 +33,24 @@ export default function BlogPage() {
               <article key={post.slug} className="py-8 first:pt-0">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  className="group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
-                  <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-                    <h2 className="type-item-title max-w-xl break-words transition-colors duration-150 ease-out text-pretty group-hover:text-foreground">
-                      {post.frontmatter.title}
-                    </h2>
-                    <time
-                      dateTime={post.frontmatter.date}
-                      className="type-meta shrink-0"
-                    >
-                      {formatPostDate(post.frontmatter.date)}
-                    </time>
-                  </div>
-
-                  <p className="type-body mt-3 max-w-xl">
-                    {post.frontmatter.description}
-                  </p>
-
-                  <p className="type-meta mt-4">
-                    {post.frontmatter.readingTime}
-                  </p>
+                  <h2 className="type-item-title max-w-xl break-words transition-colors duration-150 ease-out text-pretty group-hover:text-foreground">
+                    {post.frontmatter.title}
+                  </h2>
                 </Link>
+
+                <div className="type-meta mt-3 flex flex-wrap gap-3">
+                  <time dateTime={post.frontmatter.date}>
+                    {formatPostDate(post.frontmatter.date)}
+                  </time>
+                  <span>/</span>
+                  <span>{post.frontmatter.readingTime}</span>
+                </div>
+
+                <p className="type-body mt-3 max-w-xl">
+                  {post.frontmatter.description}
+                </p>
               </article>
             ))}
           </div>

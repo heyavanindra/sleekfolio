@@ -8,7 +8,7 @@ export default function Blog() {
   const hasMoreContent = posts.length > blogSectionConfig.viewMoreThreshold;
 
   return (
-    <section className="mt-20 md:mt-24">
+    <section id="writing" className="mt-20 scroll-mt-20 md:mt-24">
       <div className="mb-8 flex items-center gap-4">
         <h2 className="type-section-label shrink-0">
           {blogSectionConfig.label}
