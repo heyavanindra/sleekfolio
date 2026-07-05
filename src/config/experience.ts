@@ -6,7 +6,7 @@ export const experienceConfig = {
     {
       company: "Masters' Union",
       role: "Software Developer",
-      startDate: "2025-01-01",
+      startDate: "2026-01-01",
       endDate: null,
       logo: {
         src: "/assets/mastersunion.png",
