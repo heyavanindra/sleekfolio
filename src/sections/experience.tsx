@@ -11,12 +11,12 @@ const Experience = () => {
         <div className="h-px flex-1 bg-border" />
       </div>
 
-      <div className="divide-y divide-border">
+      <div className="divide-y divide-border flex flex-col gap-y-8">
         {experienceConfig.items.map((experience) => {
           const isCurrent = !experience.endDate;
 
           return (
-            <article key={experience.company} className="py-8">
+            <article key={experience.company} className="pb-8">
               <div className="flex min-w-0 flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
                 <div className="min-w-0">
                   <h3
@@ -59,9 +59,9 @@ const Experience = () => {
                       >
                         {highlight.emphasize
                           ? renderHighlightedText(
-                              highlight.text,
-                              highlight.emphasize,
-                            )
+                            highlight.text,
+                            highlight.emphasize,
+                          )
                           : highlight.text}
                       </li>
                     ))}

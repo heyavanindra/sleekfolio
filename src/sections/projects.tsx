@@ -38,7 +38,12 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="portfolio-link"
                 >
-                  {projectsConfig.actionLabels.live}
+                  <span
+                    className="project-action-link-label t-shimmer"
+                    data-text={projectsConfig.actionLabels.live}
+                  >
+                    {projectsConfig.actionLabels.live}
+                  </span>
                 </Link>
                 <Link
                   href={project.github}
@@ -46,7 +51,12 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="portfolio-link"
                 >
-                  {projectsConfig.actionLabels.github}
+                  <span
+                    className="project-action-link-label t-shimmer"
+                    data-text={projectsConfig.actionLabels.github}
+                  >
+                    {projectsConfig.actionLabels.github}
+                  </span>
                 </Link>
               </div>
             </div>

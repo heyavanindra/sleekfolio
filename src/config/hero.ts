@@ -3,9 +3,9 @@ import { siteConfig } from "./site";
 export const heroConfig = {
   name: siteConfig.name,
   headline:
-    "Software engineer building real-time products and full-stack systems.",
+    "Software engineer at heart, curious about systems, product, and taste.",
   description:
-    "I build full-stack applications with modern web technologies, focusing on scalable backends, real-time systems, and interfaces people genuinely enjoy using. I care about the practical parts of product engineering: clear data models, fast APIs, dependable background jobs, and UI that feels considered instead of noisy.",
+    "I spend most of my time around code: building full-stack products, improving backend systems, trying new AI tools, and studying what makes interfaces feel considered. I like the backend stuff that keeps software reliable, but I also care a lot about the tiny frontend details that make it feel easy to use.",
   links: [
     {
       icon: "github",
