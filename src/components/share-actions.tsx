@@ -1,7 +1,7 @@
 "use client";
 
 import type { SVGProps } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 
 type ShareActionsProps = {
@@ -11,18 +11,33 @@ type ShareActionsProps = {
 };
 
 const shareButtonClass = cn(
-  "inline-flex size-9 items-center justify-center rounded-lg border border-transparent bg-transparent text-secondary",
+  "inline-flex size-9 cursor-pointer items-center justify-center rounded-lg border border-transparent bg-transparent text-secondary",
   "transition-[color,background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]",
-  "[@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-px [@media(hover:hover)_and_(pointer:fine)]:hover:border-[color-mix(in_oklab,var(--foreground)_10%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[color-mix(in_oklab,var(--foreground)_5%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground",
+  "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[color-mix(in_oklab,var(--foreground)_10%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[color-mix(in_oklab,var(--foreground)_5%,transparent)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground",
   "active:scale-[0.97]",
   "focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
-  "motion-reduce:transform-none motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100",
+  "motion-reduce:transform-none motion-reduce:transition-colors motion-reduce:active:scale-100",
+);
+
+const copyButtonClass = cn(
+  shareButtonClass,
+  "relative overflow-hidden",
+  "data-[copied=true]:border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] data-[copied=true]:bg-[color-mix(in_oklab,var(--foreground)_7%,transparent)] data-[copied=true]:text-foreground",
 );
 
 export function ShareActions({ className, title, url }: ShareActionsProps) {
   const [copied, setCopied] = useState(false);
+  const copyResetTimeoutRef = useRef<number | null>(null);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
+
+  useEffect(() => {
+    return () => {
+      if (copyResetTimeoutRef.current) {
+        window.clearTimeout(copyResetTimeoutRef.current);
+      }
+    };
+  }, []);
 
   async function copyLink() {
     try {
@@ -41,7 +56,13 @@ export function ShareActions({ className, title, url }: ShareActionsProps) {
       }
 
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
+      if (copyResetTimeoutRef.current) {
+        window.clearTimeout(copyResetTimeoutRef.current);
+      }
+      copyResetTimeoutRef.current = window.setTimeout(() => {
+        setCopied(false);
+        copyResetTimeoutRef.current = null;
+      }, 1600);
     } catch {
       setCopied(false);
     }
@@ -70,11 +91,19 @@ export function ShareActions({ className, title, url }: ShareActionsProps) {
       </a>
       <button
         aria-label={copied ? "Portfolio link copied" : "Copy portfolio link"}
-        className={shareButtonClass}
+        className={copyButtonClass}
+        data-copied={copied}
         onClick={copyLink}
         type="button"
       >
-        <CopyIcon aria-hidden="true" className="size-4.5" />
+        <span className="t-icon-swap size-4.5" data-state={copied ? "b" : "a"}>
+          <span className="t-icon" data-icon="a">
+            <CopyIcon aria-hidden="true" className="size-full" />
+          </span>
+          <span className="t-icon" data-icon="b">
+            <CopiedIcon aria-hidden="true" className="size-full" />
+          </span>
+        </span>
       </button>
       <span aria-live="polite" className="sr-only">
         {copied ? "Portfolio link copied" : ""}
@@ -116,16 +145,27 @@ function CopyIcon(props: SVGProps<SVGSVGElement>) {
     <svg fill="none" viewBox="0 0 24 24" {...props}>
       <title>Copy link</title>
       <path
-        d="M8 8.5V6.75A2.75 2.75 0 0 1 10.75 4h5.5A2.75 2.75 0 0 1 19 6.75v5.5A2.75 2.75 0 0 1 16.25 15H14.5"
+        d="M9 9V5.25C9 4.00736 10.0074 3 11.25 3H18.75C19.9926 3 21 4.00736 21 5.25V12.75C21 13.9926 19.9926 15 18.75 15H15M12.75 9H5.25C4.00736 9 3 10.0074 3 11.25V18.75C3 19.9926 4.00736 21 5.25 21H12.75C13.9926 21 15 19.9926 15 18.75V11.25C15 10.0074 13.9926 9 12.75 9Z"
         stroke="currentColor"
+        strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1.7"
+        strokeWidth="2"
       />
+    </svg>
+  );
+}
+
+function CopiedIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg fill="none" viewBox="0 0 24 24" {...props}>
+      <title>Copied</title>
+      <circle cx="12" cy="12" fill="currentColor" r="9.25" />
       <path
-        d="M5 11.75A2.75 2.75 0 0 1 7.75 9h5.5A2.75 2.75 0 0 1 16 11.75v5.5A2.75 2.75 0 0 1 13.25 20h-5.5A2.75 2.75 0 0 1 5 17.25v-5.5Z"
-        stroke="currentColor"
+        d="m8.25 12.2 2.35 2.35 5.15-5.75"
+        stroke="var(--background)"
+        strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1.7"
+        strokeWidth="2.15"
       />
     </svg>
   );
