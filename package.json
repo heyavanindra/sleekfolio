@@ -20,6 +20,7 @@
     "next-view-transitions": "^0.3.5",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "rehype-pretty-code": "^0.14.4",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.6.0",
     "tech-stack-icons": "^3.7.1"

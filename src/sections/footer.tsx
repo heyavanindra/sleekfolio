@@ -12,10 +12,10 @@ const Footer = () => {
         </h2>
         <div className="h-px flex-1 bg-border" />
       </div>
-
+      {/* 
       <p className="type-body-lg max-w-xl break-words text-pretty">
         {footerConfig.description}
-      </p>
+      </p> */}
 
       <p className="type-body mt-4 max-w-xl break-words text-pretty">
         You can find my work on{" "}
