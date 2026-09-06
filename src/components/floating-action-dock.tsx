@@ -147,8 +147,8 @@ function ArrowUpIcon({ className }: { className?: string }) {
 
 function CircularProgressBar({
   progress,
-  size = 26,
-  strokeWidth = 2.4,
+  size = 22,
+  strokeWidth = 2.2,
   className,
 }: {
   progress: number;
@@ -175,7 +175,7 @@ function CircularProgressBar({
         cy={center}
         r={radius}
         fill="none"
-        stroke="rgba(255, 255, 255, 0.18)"
+        stroke="rgba(255, 255, 255, 0.20)"
         strokeWidth={strokeWidth}
       />
       {/* Active Progress Sweep Ring */}
@@ -184,13 +184,13 @@ function CircularProgressBar({
         cy={center}
         r={radius}
         fill="none"
-        stroke="rgba(255, 255, 255, 0.95)"
+        stroke="#ffffff"
         strokeWidth={strokeWidth}
         strokeDasharray={circumference}
         strokeDashoffset={offset}
         strokeLinecap="round"
         style={{
-          transition: "stroke-dashoffset 120ms cubic-bezier(0.2, 0, 0, 1)",
+          transition: "stroke-dashoffset 100ms linear",
         }}
       />
     </svg>
@@ -407,25 +407,33 @@ export function FloatingActionDock() {
               type="button"
               onClick={scrollToTop}
               aria-label={`Reading progress: ${scrollProgress}%. Click to scroll to top.`}
-              className="dock-island-tray h-[42px] cursor-pointer px-4 gap-3 select-none hover:border-white/20 transition-all duration-150"
+              className={cn(
+                "pointer-events-auto relative flex h-[38px] items-center rounded-full select-none cursor-pointer",
+                "bg-[#141416] pl-3.5 pr-2.5 gap-3",
+                "border border-white/10 hover:border-white/20 shadow-2xl transition-all duration-150 active:scale-[0.98]",
+              )}
+              style={{
+                boxShadow:
+                  "0 20px 40px -10px rgba(0, 0, 0, 0.85), 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)",
+              }}
             >
-              {/* White Dot */}
+              {/* Clean 6px Pure White Dot */}
               <span
-                className="size-2 rounded-full bg-white shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                className="size-1.5 rounded-full bg-white shrink-0"
                 aria-hidden="true"
               />
 
-              {/* Blog Title */}
-              <span className="text-[13.5px] font-medium tracking-tight text-white/90 max-w-[180px] sm:max-w-[280px] truncate">
+              {/* Title with Ellipsis Truncation */}
+              <span className="text-[13px] font-medium tracking-tight text-white/95 max-w-[170px] sm:max-w-[270px] truncate leading-none">
                 {blogTitle || "Reading..."}
               </span>
 
-              {/* Circular Progress Bar */}
+              {/* Calibrated Circular Progress Ring */}
               <div className="flex items-center justify-center shrink-0">
                 <CircularProgressBar
                   progress={scrollProgress}
-                  size={24}
-                  strokeWidth={2.4}
+                  size={22}
+                  strokeWidth={2.2}
                 />
               </div>
             </button>
