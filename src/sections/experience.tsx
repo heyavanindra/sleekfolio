@@ -59,9 +59,9 @@ const Experience = () => {
                       >
                         {highlight.emphasize
                           ? renderHighlightedText(
-                            highlight.text,
-                            highlight.emphasize,
-                          )
+                              highlight.text,
+                              highlight.emphasize,
+                            )
                           : highlight.text}
                       </li>
                     ))}
