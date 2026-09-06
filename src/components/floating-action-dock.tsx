@@ -1,5 +1,6 @@
 "use client";
 
+import { Liquid } from "liquid-gooey";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -59,6 +60,69 @@ function CheckIcon({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function PlusIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  );
+}
+
+function GithubIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M21.418 1H2.584C1.634 1 1 1.628 1 2.572v18.855C1 22.373 1.792 23 2.583 23h18.834c.95 0 1.583-.628 1.583-1.572V2.573C23.001 1.627 22.367 1 21.418 1ZM7.49 19.7H4.166V9.172h3.323L7.49 19.7ZM5.906 7.757c-1.108 0-1.898-.785-1.898-1.885S4.8 3.985 5.906 3.985c1.11 0 1.9.787 1.9 1.887s-.95 1.885-1.9 1.885ZM19.836 19.7h-3.324v-5.028c0-1.257 0-2.83-1.742-2.83-1.74 0-1.9 1.258-1.9 2.673V19.7H9.548V9.172h3.166v1.413c.633-1.1 1.9-1.728 3.165-1.728 3.325 0 3.957 2.2 3.957 5.028V19.7Z" />
+    </svg>
+  );
+}
+
+function ShareIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+      <polyline points="16 6 12 2 8 6" />
+      <line x1="12" y1="2" x2="12" y2="15" />
     </svg>
   );
 }
@@ -161,9 +225,13 @@ export function FloatingActionDock() {
   );
 
   const [copied, setCopied] = useState(false);
+  const [socialOpen, setSocialOpen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [blogTitle, setBlogTitle] = useState("");
   const copyTimeoutRef = useRef<number | null>(null);
+  const shareTimeoutRef = useRef<number | null>(null);
+  const launcherRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   // Track page scroll percentage
@@ -207,14 +275,42 @@ export function FloatingActionDock() {
     return () => clearTimeout(timer);
   }, [isBlogPost]);
 
-  // Clean up copy timeout
+  // Clean up timeouts
   useEffect(() => {
     return () => {
       if (copyTimeoutRef.current) {
         window.clearTimeout(copyTimeoutRef.current);
       }
+      if (shareTimeoutRef.current) {
+        window.clearTimeout(shareTimeoutRef.current);
+      }
     };
   }, []);
+
+  // Close liquid launcher on click outside or Escape
+  useEffect(() => {
+    if (!socialOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSocialOpen(false);
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        launcherRef.current &&
+        !launcherRef.current.contains(e.target as Node)
+      ) {
+        setSocialOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [socialOpen]);
 
   const handleCopyEmail = useCallback(async () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -246,6 +342,34 @@ export function FloatingActionDock() {
       }, 2000);
     } catch {
       window.location.href = `mailto:${siteConfig.author.email}`;
+    }
+  }, []);
+
+  const handleSharePortfolio = useCallback(async () => {
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      navigator.vibrate(10);
+    }
+
+    const shareUrl =
+      typeof window !== "undefined"
+        ? window.location.href
+        : `https://${siteConfig.url}`;
+
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareUrl);
+      }
+      setShareCopied(true);
+
+      if (shareTimeoutRef.current) {
+        window.clearTimeout(shareTimeoutRef.current);
+      }
+
+      shareTimeoutRef.current = window.setTimeout(() => {
+        setShareCopied(false);
+      }, 2000);
+    } catch {
+      // Fallback
     }
   }, []);
 
@@ -309,7 +433,7 @@ export function FloatingActionDock() {
           </motion.div>
         ) : (
           /* =======================================================
-             PRIMARY PORTFOLIO DOCK
+             PRIMARY PORTFOLIO DOCK WITH LIQUID-GOOEY LAUNCHER
              ======================================================= */
           <motion.div
             key="portfolio-dock"
@@ -425,6 +549,136 @@ export function FloatingActionDock() {
                 </AnimatePresence>
               </button>
               <MicroTooltip>{copied ? "Copied! ✓" : "Copy Email"}</MicroTooltip>
+            </div>
+
+            {/* Liquid Gooey Connect & Socials Launcher */}
+            <div
+              className="relative flex items-center justify-center"
+              ref={launcherRef}
+            >
+              <Liquid
+                blur={6}
+                contrast={18}
+                fill="#141416"
+                shadow="0 16px 32px -4px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.10)"
+              >
+                {/* Satellite 1: GitHub */}
+                <Liquid.Item
+                  x={socialOpen ? -54 : 0}
+                  y={socialOpen ? -34 : 0}
+                  scale={socialOpen ? 1 : 0.2}
+                  transition="bouncy"
+                  style={{ position: "absolute", top: 2, left: 2 }}
+                >
+                  <a
+                    href={siteConfig.author.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Profile (opens in new tab)"
+                    onClick={() => setSocialOpen(false)}
+                    className={cn(
+                      "group/sat relative flex size-[36px] items-center justify-center rounded-full bg-[#141416] border border-white/10 text-white/80 hover:text-white hover:bg-white/[0.12] transition-colors cursor-pointer select-none",
+                      !socialOpen && "pointer-events-none opacity-0",
+                    )}
+                  >
+                    <GithubIcon className="size-4" />
+                    <MicroTooltip visible={socialOpen}>GitHub</MicroTooltip>
+                  </a>
+                </Liquid.Item>
+
+                {/* Satellite 2: LinkedIn */}
+                <Liquid.Item
+                  x={0}
+                  y={socialOpen ? -64 : 0}
+                  scale={socialOpen ? 1 : 0.2}
+                  transition="bouncy"
+                  delay={40}
+                  style={{ position: "absolute", top: 2, left: 2 }}
+                >
+                  <a
+                    href={siteConfig.author.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile (opens in new tab)"
+                    onClick={() => setSocialOpen(false)}
+                    className={cn(
+                      "group/sat relative flex size-[36px] items-center justify-center rounded-full bg-[#141416] border border-white/10 text-white/80 hover:text-white hover:bg-white/[0.12] transition-colors cursor-pointer select-none",
+                      !socialOpen && "pointer-events-none opacity-0",
+                    )}
+                  >
+                    <LinkedinIcon className="size-4" />
+                    <MicroTooltip visible={socialOpen}>LinkedIn</MicroTooltip>
+                  </a>
+                </Liquid.Item>
+
+                {/* Satellite 3: Share Portfolio */}
+                <Liquid.Item
+                  x={socialOpen ? 54 : 0}
+                  y={socialOpen ? -34 : 0}
+                  scale={socialOpen ? 1 : 0.2}
+                  transition="bouncy"
+                  delay={70}
+                  style={{ position: "absolute", top: 2, left: 2 }}
+                >
+                  <button
+                    type="button"
+                    onClick={handleSharePortfolio}
+                    aria-label={
+                      shareCopied ? "Link copied!" : "Share portfolio link"
+                    }
+                    className={cn(
+                      "group/sat relative flex size-[36px] items-center justify-center rounded-full bg-[#141416] border border-white/10 text-white/80 hover:text-white hover:bg-white/[0.12] transition-colors cursor-pointer select-none",
+                      !socialOpen && "pointer-events-none opacity-0",
+                      shareCopied &&
+                        "border-emerald-500/40 text-emerald-400 bg-emerald-950/40",
+                    )}
+                  >
+                    {shareCopied ? (
+                      <CheckIcon className="size-3.5" />
+                    ) : (
+                      <ShareIcon className="size-3.5" />
+                    )}
+                    <MicroTooltip visible={socialOpen}>
+                      {shareCopied ? "Copied! ✓" : "Share"}
+                    </MicroTooltip>
+                  </button>
+                </Liquid.Item>
+
+                {/* Anchor Trigger Button */}
+                <Liquid.Item x={0} y={0}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (
+                        typeof navigator !== "undefined" &&
+                        navigator.vibrate
+                      ) {
+                        navigator.vibrate(10);
+                      }
+                      setSocialOpen((prev) => !prev);
+                    }}
+                    aria-expanded={socialOpen}
+                    aria-label={
+                      socialOpen
+                        ? "Close social channels"
+                        : "Connect & Share (opens GitHub, LinkedIn, Share)"
+                    }
+                    className={cn(
+                      "dock-action-btn size-[40px] rounded-full relative z-10",
+                      socialOpen &&
+                        "bg-white/[0.16] text-white border-white/20",
+                    )}
+                  >
+                    <PlusIcon
+                      className={cn(
+                        "size-4 transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)]",
+                        socialOpen && "rotate-45",
+                      )}
+                    />
+                  </button>
+                  <MicroTooltip visible={!socialOpen}>Connect</MicroTooltip>
+                </Liquid.Item>
+              </Liquid>
             </div>
 
             {/* Right Item: Circular Scroll Progress & Back to Top Button */}
