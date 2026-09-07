@@ -1,4 +1,5 @@
 import { experienceConfig } from "@/config";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import { cn } from "@/utils/cn";
 
 const Experience = () => {
@@ -11,8 +12,9 @@ const Experience = () => {
         <div className="h-px flex-1 bg-border" />
       </div>
 
-      <div className="divide-y divide-border flex flex-col gap-y-8">
-        {experienceConfig.items.map((experience) => {
+      <TracingBeam>
+        <div className="divide-y divide-border flex flex-col gap-y-8">
+          {experienceConfig.items.map((experience) => {
           const isCurrent = !experience.endDate;
 
           return (
@@ -81,7 +83,8 @@ const Experience = () => {
             </article>
           );
         })}
-      </div>
+        </div>
+      </TracingBeam>
     </section>
   );
 };

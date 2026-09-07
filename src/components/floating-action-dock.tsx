@@ -147,8 +147,8 @@ function ArrowUpIcon({ className }: { className?: string }) {
 
 function CircularProgressBar({
   progress,
-  size = 22,
-  strokeWidth = 2.2,
+  size = 28,
+  strokeWidth = 2.4,
   className,
 }: {
   progress: number;
@@ -208,9 +208,9 @@ function MicroTooltip({
   return (
     <span
       className={cn(
-        "pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap",
-        "rounded-full border border-white/10 bg-[#141416] px-2.5 py-0.5 text-[11px] font-medium tracking-tight text-white/90 shadow-2xl",
-        "opacity-0 transition-all duration-150 ease-out group-hover:-top-9 group-hover:opacity-100 group-focus-within:-top-9 group-focus-within:opacity-100",
+        "pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap",
+        "rounded-full border border-white/10 bg-[#141416] px-3 py-1 text-[11.5px] font-medium tracking-tight text-white/90 shadow-2xl",
+        "opacity-0 transition-all duration-150 ease-out group-hover:-top-10 group-hover:opacity-100 group-focus-within:-top-10 group-focus-within:opacity-100",
       )}
     >
       {children}
@@ -259,20 +259,53 @@ export function FloatingActionDock() {
     };
   }, []);
 
-  // Fetch current blog title dynamically from the page
+  // Fetch active heading dynamically as user scrolls through article
   useEffect(() => {
     if (!isBlogPost) return;
 
-    const findTitle = () => {
-      const h1 = document.querySelector("h1");
-      if (h1?.textContent) {
-        setBlogTitle(h1.textContent.trim());
+    const updateActiveHeading = () => {
+      const headings = Array.from(
+        document.querySelectorAll("article h2, article h3, h1"),
+      );
+      if (!headings.length) {
+        const fallbackH1 = document.querySelector("h1");
+        if (fallbackH1?.textContent) {
+          setBlogTitle(fallbackH1.textContent.trim());
+        }
+        return;
       }
+
+      const mainH1 = document.querySelector("h1");
+      const scrollY = window.scrollY;
+
+      // When near top of post, display main title
+      if (scrollY < 240 && mainH1?.textContent) {
+        setBlogTitle(mainH1.textContent.trim());
+        return;
+      }
+
+      // Find current section heading scrolled past the top of the viewport
+      let current = mainH1?.textContent?.trim() || "";
+      for (const heading of headings) {
+        const rect = heading.getBoundingClientRect();
+        if (rect.top <= 180) {
+          if (heading.textContent?.trim()) {
+            current = heading.textContent.trim();
+          }
+        }
+      }
+      setBlogTitle(current);
     };
 
-    findTitle();
-    const timer = setTimeout(findTitle, 150);
-    return () => clearTimeout(timer);
+    updateActiveHeading();
+    const timer = setTimeout(updateActiveHeading, 150);
+    window.addEventListener("scroll", updateActiveHeading, { passive: true });
+    window.addEventListener("resize", updateActiveHeading, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", updateActiveHeading);
+      window.removeEventListener("resize", updateActiveHeading);
+    };
   }, [isBlogPost]);
 
   // Clean up timeouts
@@ -408,23 +441,23 @@ export function FloatingActionDock() {
               onClick={scrollToTop}
               aria-label={`Reading progress: ${scrollProgress}%. Click to scroll to top.`}
               className={cn(
-                "pointer-events-auto relative flex h-[38px] items-center rounded-full select-none cursor-pointer",
-                "bg-[#141416] pl-3.5 pr-2.5 gap-3",
-                "border border-white/10 hover:border-white/20 shadow-2xl transition-all duration-150 active:scale-[0.98]",
+                "pointer-events-auto relative flex h-[46px] sm:h-[48px] items-center rounded-full select-none cursor-pointer",
+                "bg-[#141416]/95 backdrop-blur-md pl-4.5 sm:pl-5 pr-3 sm:pr-3.5 gap-3.5 sm:gap-4",
+                "border border-white/12 hover:border-white/25 shadow-2xl transition-all duration-200 active:scale-[0.98]",
               )}
               style={{
                 boxShadow:
-                  "0 20px 40px -10px rgba(0, 0, 0, 0.85), 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)",
+                  "0 20px 40px -10px rgba(0, 0, 0, 0.85), 0 6px 18px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
               }}
             >
-              {/* Clean 6px Pure White Dot */}
+              {/* Clean 8px Pure White Dot with subtle glow */}
               <span
-                className="size-1.5 rounded-full bg-white shrink-0"
+                className="size-2 rounded-full bg-white shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.45)]"
                 aria-hidden="true"
               />
 
-              {/* Title with Ellipsis Truncation */}
-              <span className="text-[13px] font-medium tracking-tight text-white/95 max-w-[170px] sm:max-w-[270px] truncate leading-none">
+              {/* Title / Section Heading with Ellipsis Truncation */}
+              <span className="text-[14px] sm:text-[14.5px] font-medium tracking-tight text-white/95 max-w-[200px] sm:max-w-[340px] md:max-w-[420px] truncate leading-none">
                 {blogTitle || "Reading..."}
               </span>
 
@@ -432,8 +465,8 @@ export function FloatingActionDock() {
               <div className="flex items-center justify-center shrink-0">
                 <CircularProgressBar
                   progress={scrollProgress}
-                  size={22}
-                  strokeWidth={2.2}
+                  size={28}
+                  strokeWidth={2.4}
                 />
               </div>
             </button>
@@ -507,7 +540,7 @@ export function FloatingActionDock() {
                 className={cn(
                   "dock-action-btn size-[40px] rounded-full",
                   copied &&
-                    "border-emerald-500/30 bg-emerald-950/40 text-emerald-300",
+                  "border-emerald-500/30 bg-emerald-950/40 text-emerald-300",
                 )}
               >
                 <span className="sr-only" aria-live="polite">
@@ -638,7 +671,7 @@ export function FloatingActionDock() {
                       "group/sat relative flex size-[36px] items-center justify-center rounded-full bg-[#141416] border border-white/10 text-white/80 hover:text-white hover:bg-white/[0.12] transition-colors cursor-pointer select-none",
                       !socialOpen && "pointer-events-none opacity-0",
                       shareCopied &&
-                        "border-emerald-500/40 text-emerald-400 bg-emerald-950/40",
+                      "border-emerald-500/40 text-emerald-400 bg-emerald-950/40",
                     )}
                   >
                     {shareCopied ? (
@@ -674,7 +707,7 @@ export function FloatingActionDock() {
                     className={cn(
                       "dock-action-btn size-[40px] rounded-full relative z-10",
                       socialOpen &&
-                        "bg-white/[0.16] text-white border-white/20",
+                      "bg-white/[0.16] text-white border-white/20",
                     )}
                   >
                     <PlusIcon
