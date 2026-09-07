@@ -1,11 +1,10 @@
 import { ShareActions } from "@/components/share-actions";
-import { SocialLinks } from "@/components/social-links";
 import { footerConfig } from "@/config";
 import { siteConfig } from "@/config/site";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="mt-20 scroll-mt-20 pb-16 md:mt-24">
+    <footer id="contact" className="mt-20 scroll-mt-20 pb-28 md:mt-24 sm:pb-32">
       <div className="mb-8 flex min-w-0 items-center gap-4">
         <h2 className="type-section-label shrink-0">
           {footerConfig.section.label}

@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { FloatingActionDock } from "@/components/floating-action-dock";
+
 const inter = Inter({
   display: "swap",
   subsets: ["latin"],
@@ -74,6 +76,7 @@ export default function RootLayout({
           </a>
           <Analytics></Analytics>
           {children}
+          <FloatingActionDock />
         </body>
       </html>
     </ViewTransitions>
