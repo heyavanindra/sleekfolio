@@ -20,6 +20,7 @@ export default function Blog() {
       </div>
 
       <BlogPreviewList posts={posts} />
+
       {hasMoreContent && (
         <div className="flex items-center justify-start pt-3">
           <Link href={blogSectionConfig.href} className="portfolio-link">

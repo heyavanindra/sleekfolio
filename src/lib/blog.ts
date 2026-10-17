@@ -71,9 +71,9 @@ export function getPublishedBlogPosts() {
 }
 
 export function formatPostDate(date: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
+  return new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
+    month: "short",
     timeZone: "UTC",
     year: "numeric",
   }).format(new Date(date));

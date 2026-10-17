@@ -3,13 +3,13 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 
 function CircularProgressBar({
   progress,
-  size = 28,
-  strokeWidth = 2.4,
+  size = 24,
+  strokeWidth = 2.2,
   className,
 }: {
   progress: number;
@@ -69,9 +69,9 @@ function MicroTooltip({
   return (
     <span
       className={cn(
-        "pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap",
-        "rounded-full border border-white/10 bg-[#141416] px-3 py-1 text-[11.5px] font-medium tracking-tight text-white/90 shadow-2xl",
-        "opacity-0 transition-all duration-150 ease-out group-hover:-top-10 group-hover:opacity-100 group-focus-within:-top-10 group-focus-within:opacity-100",
+        "pointer-events-none absolute -top-8.5 left-1/2 -translate-x-1/2 whitespace-nowrap",
+        "rounded-full border border-white/10 bg-[#141416] px-2.5 py-0.5 text-[11px] font-medium tracking-tight text-white/90 shadow-2xl",
+        "opacity-0 transition-all duration-150 ease-out group-hover:-top-9.5 group-hover:opacity-100 group-focus-within:-top-9.5 group-focus-within:opacity-100",
       )}
     >
       {children}
@@ -120,7 +120,7 @@ export function FloatingActionDock() {
 
     const updateActiveHeading = () => {
       const headings = Array.from(
-        document.querySelectorAll("article h2, article h3, h1"),
+        document.querySelectorAll("article h2, article h3, article h4, h1"),
       );
       if (!headings.length) {
         const fallbackH1 = document.querySelector("h1");
@@ -134,7 +134,7 @@ export function FloatingActionDock() {
       const scrollY = window.scrollY;
 
       // When near top of post, display main title
-      if (scrollY < 240 && mainH1?.textContent) {
+      if (scrollY < 200 && mainH1?.textContent) {
         setBlogTitle(mainH1.textContent.trim());
         return;
       }
@@ -143,10 +143,8 @@ export function FloatingActionDock() {
       let current = mainH1?.textContent?.trim() || "";
       for (const heading of headings) {
         const rect = heading.getBoundingClientRect();
-        if (rect.top <= 180) {
-          if (heading.textContent?.trim()) {
-            current = heading.textContent.trim();
-          }
+        if (rect.top <= 220 && heading.textContent?.trim()) {
+          current = heading.textContent.trim();
         }
       }
       setBlogTitle(current);
@@ -199,32 +197,58 @@ export function FloatingActionDock() {
             onClick={scrollToTop}
             aria-label={`Reading progress: ${scrollProgress}%. Click to scroll to top.`}
             className={cn(
-              "pointer-events-auto relative flex h-[46px] sm:h-[48px] items-center rounded-full select-none cursor-pointer",
-              "bg-[#141416]/95 backdrop-blur-md pl-4.5 sm:pl-5 pr-3 sm:pr-3.5 gap-3.5 sm:gap-4",
+              "pointer-events-auto relative flex h-[42px] sm:h-[44px] w-[240px] max-w-[calc(100vw-2rem)] items-center rounded-full select-none cursor-pointer",
+              "bg-[#141416]/95 backdrop-blur-md pl-4 pr-2.5 gap-2.5 sm:gap-3",
               "border border-white/12 hover:border-white/25 shadow-2xl transition-all duration-200 active:scale-[0.98]",
             )}
             style={{
               boxShadow:
-                "0 20px 40px -10px rgba(0, 0, 0, 0.85), 0 6px 18px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
+                "0 16px 36px -6px rgba(0, 0, 0, 0.85), 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
             }}
           >
-            {/* Clean 8px Pure White Dot with subtle glow */}
+            {/* Clean 7px Pure White Dot with subtle glow */}
             <span
-              className="size-2 rounded-full bg-white shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.45)]"
+              className="size-[7px] rounded-full bg-white shrink-0 shadow-[0_0_6px_rgba(255,255,255,0.45)]"
               aria-hidden="true"
             />
 
-            {/* Title / Section Heading with Ellipsis Truncation */}
-            <span className="text-[14px] sm:text-[14.5px] font-medium tracking-tight text-white/95 max-w-[200px] sm:max-w-[340px] md:max-w-[420px] truncate leading-none">
-              {blogTitle || "Reading..."}
-            </span>
+            {/* Title / Section Heading with Fixed Slot, Ellipsis Truncation, & Transitions.dev Text States Swap */}
+            <div className="flex-1 min-w-0 overflow-hidden text-left relative h-[18px] flex items-center">
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={blogTitle || "Reading..."}
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { y: 6, filter: "blur(2px)", opacity: 0 }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? { opacity: 1 }
+                      : { y: 0, filter: "blur(0px)", opacity: 1 }
+                  }
+                  exit={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { y: -6, filter: "blur(2px)", opacity: 0 }
+                  }
+                  transition={{
+                    duration: 0.16,
+                    ease: [0.25, 1, 0.5, 1],
+                  }}
+                  className="block w-full truncate text-[13px] sm:text-[13.5px] font-medium tracking-tight text-white/95 leading-none"
+                >
+                  {blogTitle || "Reading..."}
+                </motion.span>
+              </AnimatePresence>
+            </div>
 
             {/* Calibrated Circular Progress Ring */}
             <div className="flex items-center justify-center shrink-0">
               <CircularProgressBar
                 progress={scrollProgress}
-                size={28}
-                strokeWidth={2.4}
+                size={24}
+                strokeWidth={2.2}
               />
             </div>
           </button>
