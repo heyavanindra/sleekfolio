@@ -67,11 +67,35 @@ body {
 .portfolio-grid-background {
   min-height: 100vh;
   width: 100%;
-  background: var(--background);
-}
-
-main.portfolio-grid-background {
-  background: transparent;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in oklab, var(--background) 16%, transparent) 0 28rem,
+      var(--background) 74rem
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--background) 30%, transparent) 0%,
+      color-mix(in oklab, var(--background) 62%, transparent) 46%,
+      var(--background) 86%
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--foreground) 7%, transparent) 1px,
+      transparent 1px
+    ), var(--background);
+  background-position:
+    center top,
+    0 0,
+    0 0,
+    0 0;
+  background-attachment: fixed, fixed, fixed, fixed;
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-size:
+    100% 100%,
+    100% 100%,
+    30px 30px,
+    auto;
 }
 
 .animate-blur-in {

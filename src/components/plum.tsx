@@ -148,7 +148,7 @@ export function Plum() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 print:hidden"
+      className="pointer-events-none fixed inset-0 z-1 print:hidden"
       style={{
         maskImage: mask,
         WebkitMaskImage: mask,
