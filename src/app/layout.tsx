@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Nunito } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
 import { Plum } from "@/components/plum";
 
-const inter = Inter({
+const inter = Nunito({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-inter",
