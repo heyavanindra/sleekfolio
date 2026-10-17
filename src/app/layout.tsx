@@ -4,6 +4,7 @@ import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
+import { Plum } from "@/components/plum";
 
 const inter = Inter({
   display: "swap",
@@ -67,15 +68,18 @@ export default function RootLayout({
         lang="en"
         className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
       >
-        <body className="flex min-h-full flex-col">
+        <body className="portfolio-grid-background relative flex min-h-full flex-col">
           <a
             href="#main-content"
             className="sr-only fixed top-3 left-3 z-50 rounded-sm bg-foreground px-3 py-2 text-sm font-medium text-background focus-visible:not-sr-only focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Skip to main content
           </a>
-          <Analytics></Analytics>
-          {children}
+          <Analytics />
+          <Plum />
+          <div className="relative z-10 flex min-h-full flex-1 flex-col">
+            {children}
+          </div>
           <FloatingActionDock />
         </body>
       </html>
