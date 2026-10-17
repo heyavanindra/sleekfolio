@@ -40,7 +40,9 @@ html::-webkit-scrollbar {
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-sans:
+    var(--font-nunito), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   --font-mono: var(--font-jetbrains-mono), "Courier New", Courier, monospace;
 }
 
@@ -49,8 +51,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   font-size: 16px;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   touch-action: manipulation;
   -webkit-tap-highlight-color: color-mix(
     in oklab,
@@ -135,8 +139,8 @@ body {
 .type-page-title {
   color: var(--foreground);
   font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   line-height: 1.35;
 }
 
@@ -144,7 +148,7 @@ body {
   color: var(--foreground);
   font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
   line-height: 1.4;
 }
 
@@ -152,7 +156,7 @@ body {
   color: var(--foreground);
   font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
   line-height: 1.45;
 }
 
@@ -160,7 +164,7 @@ body {
   color: var(--foreground);
   font-size: 1.125rem;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   line-height: 1.55;
 }
 
@@ -168,7 +172,7 @@ body {
   color: var(--secondary);
   font-size: 1rem;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: -0.005em;
   line-height: 1.65;
 }
 

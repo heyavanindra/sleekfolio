@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Nunito } from "next/font/google";
+import { JetBrains_Mono, Nunito } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
 import { Plum } from "@/components/plum";
 
-const inter = Nunito({
-  display: "swap",
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-inter",
+  display: "swap",
+  variable: "--font-nunito",
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -66,7 +66,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
+        className={`${nunito.variable} ${jetBrainsMono.variable} h-full antialiased`}
       >
         <body className="flex min-h-full flex-col">
           <a
