@@ -5,7 +5,7 @@ export const blogSectionConfig = {
   href: "/blog",
   allPostsLabel: "All Posts",
   viewMoreLabel: "View More",
-  limit: 3,
+  limit: 4,
   viewMoreThreshold: 2,
 };
 
