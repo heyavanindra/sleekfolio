@@ -41,9 +41,10 @@ html::-webkit-scrollbar {
   --color-accent: var(--accent);
   --color-border: var(--border);
   --font-sans:
-    var(--font-nunito), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), "Courier New", Courier, monospace;
+    var(--font-goeist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-goeist-mono), "Courier New", Courier, monospace;
+  --font-serif: var(--font-goeist-serif), Georgia, "Times New Roman", serif;
 }
 
 body {

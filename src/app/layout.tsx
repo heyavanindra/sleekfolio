@@ -1,22 +1,12 @@
+import { GoeistMono } from "goeist/font/mono";
+import { GoeistSans } from "goeist/font/sans";
+import { GoeistSerif } from "goeist/font/serif";
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Nunito } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
 import { Plum } from "@/components/plum";
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nunito",
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  display: "swap",
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
 
 export const metadata: Metadata = {
   title: "Avanindra Tiwari — Software Engineer",
@@ -66,7 +56,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${nunito.variable} ${jetBrainsMono.variable} h-full antialiased`}
+        className={`${GoeistSans.variable} ${GoeistMono.variable} ${GoeistSerif.variable} h-full antialiased`}
       >
         <body className="flex min-h-full flex-col">
           <a
