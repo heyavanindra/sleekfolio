@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
 
 function CircularProgressBar({
@@ -81,7 +81,8 @@ function MicroTooltip({
 
 export function FloatingActionDock() {
   const pathname = usePathname();
-  const isBlog = Boolean(pathname?.startsWith("/blog"));
+  // Only show floating dock on individual post pages (/blog/:slug), not on the /blog listing page
+  const isBlogPost = Boolean(pathname && /^\/blog\/[^/]+/.test(pathname));
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [blogTitle, setBlogTitle] = useState("");
@@ -89,7 +90,7 @@ export function FloatingActionDock() {
 
   // Track page scroll percentage
   useEffect(() => {
-    if (!isBlog) return;
+    if (!isBlogPost) return;
 
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;
@@ -112,11 +113,11 @@ export function FloatingActionDock() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [isBlog]);
+  }, [isBlogPost]);
 
   // Fetch active heading dynamically as user scrolls through article
   useEffect(() => {
-    if (!isBlog) return;
+    if (!isBlogPost) return;
 
     const updateActiveHeading = () => {
       const headings = Array.from(
@@ -159,7 +160,7 @@ export function FloatingActionDock() {
       window.removeEventListener("scroll", updateActiveHeading);
       window.removeEventListener("resize", updateActiveHeading);
     };
-  }, [isBlog]);
+  }, [isBlogPost]);
 
   const scrollToTop = useCallback(() => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -168,8 +169,8 @@ export function FloatingActionDock() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Remove dock everywhere except blog pages
-  if (!isBlog) {
+  // Remove dock everywhere except individual blog post pages
+  if (!isBlogPost) {
     return null;
   }
 

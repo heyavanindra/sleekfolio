@@ -23,7 +23,7 @@ const Experience = () => {
               key={experience.company}
               className="py-10 first:pt-2 last:pb-2 md:py-14"
             >
-              <div className="flex items-center gap-3 sm:gap-3.5">
+              <div className="flex items-start gap-3 sm:gap-3.5">
                 {LogoComponent ? (
                   <div className="flex h-[29px] w-6 shrink-0 items-center justify-center text-foreground md:h-8 md:w-7">
                     <LogoComponent className="size-5 object-contain sm:size-5.5 md:size-6" />
