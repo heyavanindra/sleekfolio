@@ -5,6 +5,7 @@ export const experienceConfig = {
   items: [
     {
       company: "Masters' Union",
+      logoId: "mastersUnion" as const,
       role: "Software Developer",
       startDate: "2026-01-01",
       endDate: null,
@@ -32,6 +33,7 @@ export const experienceConfig = {
     },
     {
       company: "Nivesh Jano",
+      logoId: "niveshJano" as const,
       role: "Technical Development Intern",
       startDate: "2025-04-01",
       endDate: "2025-10-01",

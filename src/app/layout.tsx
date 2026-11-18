@@ -1,6 +1,5 @@
 import { GoeistMono } from "goeist/font/mono";
 import { GoeistSans } from "goeist/font/sans";
-import { GoeistSerif } from "goeist/font/serif";
 import type { Metadata, Viewport } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
@@ -56,7 +55,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${GoeistSans.variable} ${GoeistMono.variable} ${GoeistSerif.variable} h-full antialiased`}
+        className={`${GoeistSans.variable} ${GoeistMono.variable} h-full antialiased`}
       >
         <body className="flex min-h-full flex-col">
           <a

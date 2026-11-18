@@ -44,7 +44,6 @@ html::-webkit-scrollbar {
     var(--font-goeist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
   --font-mono: var(--font-goeist-mono), "Courier New", Courier, monospace;
-  --font-serif: var(--font-goeist-serif), Georgia, "Times New Roman", serif;
 }
 
 body {
@@ -370,7 +369,7 @@ body {
   align-items: center;
   min-height: 2rem;
   color: var(--foreground);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.375rem;
   font-weight: 700;
   line-height: 1;
