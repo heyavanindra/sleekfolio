@@ -10,15 +10,18 @@ import {
 } from "motion/react";
 import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { ProjectTechIcon } from "@/components/project-tech-icon";
+import { cn } from "@/utils/cn";
 
 type ProjectTechAvatarGroupProps = {
   label: string;
   stack: string[];
+  className?: string;
 };
 
 export function ProjectTechAvatarGroup({
   label,
   stack,
+  className,
 }: ProjectTechAvatarGroupProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -57,7 +60,10 @@ export function ProjectTechAvatarGroup({
 
   return (
     <ul
-      className="mt-5 flex max-w-full flex-wrap items-center pl-1"
+      className={cn(
+        "mt-5 flex max-w-full flex-wrap items-center pl-1",
+        className,
+      )}
       aria-label={label}
       onMouseLeave={() => setHoveredIndex(null)}
     >
@@ -106,24 +112,24 @@ export function ProjectTechAvatarGroup({
                         ...(shouldReduceMotion
                           ? { duration: 0.12, ease: "easeOut" }
                           : {
-                            damping: 18,
-                            stiffness: 260,
-                            type: "spring",
-                          }),
+                              damping: 18,
+                              stiffness: 260,
+                              type: "spring",
+                            }),
                       },
                     }}
                     exit={
                       shouldReduceMotion
                         ? {
-                          opacity: 0,
-                          transition: { duration: 0.08, ease: "easeOut" },
-                        }
+                            opacity: 0,
+                            transition: { duration: 0.08, ease: "easeOut" },
+                          }
                         : {
-                          opacity: 0,
-                          y: 4,
-                          scale: 0.98,
-                          transition: { duration: 0.08, ease: "easeOut" },
-                        }
+                            opacity: 0,
+                            y: 4,
+                            scale: 0.98,
+                            transition: { duration: 0.08, ease: "easeOut" },
+                          }
                     }
                     style={
                       shouldReduceMotion ? undefined : { rotate, x: translateX }

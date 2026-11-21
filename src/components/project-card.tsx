@@ -56,20 +56,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
         aria-hidden="true"
       />
 
-      {/* Visual preview window with asymmetric zoom & glass glare */}
+      {/* Visual preview window with natural fit & glass glare */}
       <Link
         href={project.live}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Open ${project.title} live preview`}
-        className="relative aspect-[1920/973] w-full overflow-hidden rounded-xl bg-neutral-950/80 border border-white/[0.06] block transition-[border-color] duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:border-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="relative block w-full overflow-hidden rounded-xl border border-white/[0.06] bg-neutral-950/80 transition-[border-color] duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:border-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <Image
           src={project.image}
           alt={`${project.title} screenshot`}
-          fill
+          width={1920}
+          height={970}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
-          className="object-cover object-top transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.035] motion-reduce:transform-none"
+          className="h-auto w-full object-contain transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02] motion-reduce:transform-none"
         />
 
         {/* Subtle glass glare sheen */}
@@ -139,7 +140,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <ProjectTechAvatarGroup
             label={`${project.title} tech stack`}
             stack={project.stack}
-          // className="mt-0"
+            // className="mt-0"
           />
         </div>
       </div>
