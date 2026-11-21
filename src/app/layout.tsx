@@ -1,11 +1,19 @@
 import { GoeistMono } from "goeist/font/mono";
 import { GoeistSans } from "goeist/font/sans";
 import type { Metadata, Viewport } from "next";
+import { Newsreader } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
+import { GlobalClickSound } from "@/components/global-click-sound";
 import { Plum } from "@/components/plum";
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Avanindra Tiwari — Software Engineer",
@@ -55,7 +63,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${GoeistSans.variable} ${GoeistMono.variable} h-full antialiased`}
+        className={`${GoeistSans.variable} ${GoeistMono.variable} ${newsreader.variable} h-full antialiased`}
       >
         <body className="flex min-h-full flex-col">
           <a
@@ -66,6 +74,7 @@ export default function RootLayout({
           </a>
           <Analytics />
           <Plum />
+          <GlobalClickSound />
           {children}
           <FloatingActionDock />
         </body>

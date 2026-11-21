@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useState } from "react";
+import { SoundFeedback } from "@/components/sound-feedback";
 import { cn } from "@/utils/cn";
 
 function CircularProgressBar({
@@ -193,66 +194,68 @@ export function FloatingActionDock() {
           transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
           className="group relative flex items-center"
         >
-          <button
-            type="button"
-            onClick={scrollToTop}
-            aria-label={`Reading progress: ${scrollProgress}%. Click to scroll to top.`}
-            className={cn(
-              "pointer-events-auto relative flex h-[42px] sm:h-[44px] w-[240px] max-w-[calc(100vw-2rem)] items-center rounded-full select-none cursor-pointer",
-              "bg-[#141416]/95 backdrop-blur-md pl-4 pr-2.5 gap-2.5 sm:gap-3",
-              "border border-white/12 hover:border-white/25 shadow-2xl transition-all duration-200 active:scale-[0.98]",
-            )}
-            style={{
-              boxShadow:
-                "0 16px 36px -6px rgba(0, 0, 0, 0.85), 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
-            }}
-          >
-            {/* Clean 7px Pure White Dot with subtle glow */}
-            <span
-              className="size-[7px] rounded-full bg-white shrink-0 shadow-[0_0_6px_rgba(255,255,255,0.45)]"
-              aria-hidden="true"
-            />
-
-            {/* Title / Section Heading with Fixed Slot, Ellipsis Truncation, & Transitions.dev Text States Swap */}
-            <div className="flex-1 min-w-0 overflow-hidden text-left relative h-[18px] flex items-center">
-              <AnimatePresence mode="popLayout" initial={false}>
-                <motion.span
-                  key={blogTitle || "Reading..."}
-                  initial={
-                    shouldReduceMotion
-                      ? { opacity: 0 }
-                      : { y: 6, filter: "blur(2px)", opacity: 0 }
-                  }
-                  animate={
-                    shouldReduceMotion
-                      ? { opacity: 1 }
-                      : { y: 0, filter: "blur(0px)", opacity: 1 }
-                  }
-                  exit={
-                    shouldReduceMotion
-                      ? { opacity: 0 }
-                      : { y: -6, filter: "blur(2px)", opacity: 0 }
-                  }
-                  transition={{
-                    duration: 0.16,
-                    ease: [0.25, 1, 0.5, 1],
-                  }}
-                  className="block w-full truncate text-[13px] sm:text-[13.5px] font-medium tracking-tight text-white/95 leading-none"
-                >
-                  {blogTitle || "Reading..."}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-
-            {/* Calibrated Circular Progress Ring */}
-            <div className="flex items-center justify-center shrink-0">
-              <CircularProgressBar
-                progress={scrollProgress}
-                size={24}
-                strokeWidth={2.2}
+          <SoundFeedback>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label={`Reading progress: ${scrollProgress}%. Click to scroll to top.`}
+              className={cn(
+                "pointer-events-auto relative flex h-[42px] sm:h-[44px] w-[240px] max-w-[calc(100vw-2rem)] items-center rounded-full select-none cursor-pointer",
+                "bg-[#141416]/95 backdrop-blur-md pl-4 pr-2.5 gap-2.5 sm:gap-3",
+                "border border-white/12 hover:border-white/25 shadow-2xl transition-all duration-200 active:scale-[0.98]",
+              )}
+              style={{
+                boxShadow:
+                  "0 16px 36px -6px rgba(0, 0, 0, 0.85), 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
+              }}
+            >
+              {/* Clean 7px Pure White Dot with subtle glow */}
+              <span
+                className="size-[7px] rounded-full bg-white shrink-0 shadow-[0_0_6px_rgba(255,255,255,0.45)]"
+                aria-hidden="true"
               />
-            </div>
-          </button>
+
+              {/* Title / Section Heading with Fixed Slot, Ellipsis Truncation, & Transitions.dev Text States Swap */}
+              <div className="flex-1 min-w-0 overflow-hidden text-left relative h-[18px] flex items-center">
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.span
+                    key={blogTitle || "Reading..."}
+                    initial={
+                      shouldReduceMotion
+                        ? { opacity: 0 }
+                        : { y: 6, filter: "blur(2px)", opacity: 0 }
+                    }
+                    animate={
+                      shouldReduceMotion
+                        ? { opacity: 1 }
+                        : { y: 0, filter: "blur(0px)", opacity: 1 }
+                    }
+                    exit={
+                      shouldReduceMotion
+                        ? { opacity: 0 }
+                        : { y: -6, filter: "blur(2px)", opacity: 0 }
+                    }
+                    transition={{
+                      duration: 0.16,
+                      ease: [0.25, 1, 0.5, 1],
+                    }}
+                    className="block w-full truncate text-[13px] sm:text-[13.5px] font-medium tracking-tight text-white/95 leading-none"
+                  >
+                    {blogTitle || "Reading..."}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              {/* Calibrated Circular Progress Ring */}
+              <div className="flex items-center justify-center shrink-0">
+                <CircularProgressBar
+                  progress={scrollProgress}
+                  size={24}
+                  strokeWidth={2.2}
+                />
+              </div>
+            </button>
+          </SoundFeedback>
           <MicroTooltip>{scrollProgress}% read · Back to top</MicroTooltip>
         </motion.div>
       </AnimatePresence>
