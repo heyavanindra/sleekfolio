@@ -16,7 +16,7 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
 
   if (posts.length === 0) {
     return (
-      <p className="py-4 text-[15px] text-muted-foreground">
+      <p className="py-4 text-[15px] text-secondary">
         No posts published yet.
       </p>
     );
@@ -40,7 +40,7 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
               onFocus={() => setHoveredIndex(index)}
               onBlur={() => setHoveredIndex(null)}
               className={cn(
-                "group relative -mx-4 flex items-center justify-between gap-4 rounded-xl px-4 py-3.5",
+                "group relative isolate -mx-4 flex items-center justify-between gap-4 rounded-xl px-4 py-3.5",
                 "outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
                 "transition-transform duration-160 ease-out active:scale-[0.985]",
               )}
@@ -52,13 +52,13 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
                     layoutId={
                       shouldReduceMotion ? undefined : "blog-hover-pill"
                     }
-                    className="absolute inset-0 rounded-xl bg-white/6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] -z-10"
+                    className="absolute inset-0 -z-1 rounded-xl bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{
                       type: "spring",
-                      duration: 0.26,
+                      duration: 0.22,
                       bounce: 0,
                     }}
                     aria-hidden="true"
@@ -70,8 +70,12 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
               <span
                 className={cn(
                   "min-w-0 text-[15px] sm:text-base font-semibold tracking-[-0.01em] text-foreground text-pretty",
-                  "transition-opacity duration-200 ease-out",
-                  isAnyHovered && !isHovered ? "opacity-50" : "opacity-100",
+                  "transition-all duration-200 ease-out",
+                  isHovered
+                    ? "text-foreground translate-x-0.5"
+                    : isAnyHovered
+                      ? "opacity-45"
+                      : "opacity-100",
                 )}
               >
                 {post.frontmatter.title}
@@ -81,13 +85,13 @@ export function BlogPreviewList({ posts }: BlogPreviewListProps) {
               <time
                 dateTime={post.frontmatter.date}
                 className={cn(
-                  "shrink-0 text-sm sm:text-[15px] font-normal tabular-nums text-muted-foreground",
+                  "shrink-0 text-sm sm:text-[15px] font-normal tabular-nums font-mono text-secondary",
                   "transition-all duration-200 ease-out",
                   isHovered
-                    ? "text-zinc-400 opacity-100"
+                    ? "text-foreground opacity-100"
                     : isAnyHovered
-                      ? "opacity-50"
-                      : "opacity-100",
+                      ? "opacity-45"
+                      : "opacity-75",
                 )}
               >
                 {formatPostDate(post.frontmatter.date)}

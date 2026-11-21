@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
+import { Undo2 } from "lucide-react";
 import Container from "@/component/container";
+import { BlogPreviewList } from "@/components/blog/blog-preview-list";
 import { SiteNav } from "@/components/site-nav";
 import { blogPageConfig } from "@/config";
-import { formatPostDate, getPublishedBlogPosts } from "@/lib/blog";
+import { getPublishedBlogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = blogPageConfig.metadata;
 
@@ -11,48 +13,34 @@ export default function BlogPage() {
   const posts = getPublishedBlogPosts();
 
   return (
-    <main id="main-content" className="portfolio-grid-background">
+    <main id="main-content" className="portfolio-grid-background min-h-screen">
       <SiteNav />
       <Container>
-        <section className="pt-14 pb-24 md:pt-16">
-          <Link href={blogPageConfig.backHref} className="portfolio-link">
-            {blogPageConfig.backLabel}
-          </Link>
-
-          <div className="mt-10">
-            <h1 className="type-page-title text-balance">
-              {blogPageConfig.heading}
-            </h1>
-            <p className="type-body mt-6 max-w-xl text-pretty">
-              {blogPageConfig.description}
-            </p>
+        <section className="pt-10 pb-28 sm:pt-14 sm:pb-36">
+          {/* Back to Home Link */}
+          <div className="mb-8">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-secondary hover:text-foreground transition-colors group"
+            >
+              <Undo2 className="size-3.5 sm:size-4 transition-transform group-hover:-translate-x-0.5" />
+              <span>Back</span>
+            </Link>
           </div>
 
-          <div className="mt-14 divide-y divide-border">
-            {posts.map((post) => (
-              <article key={post.slug} className="py-8 first:pt-0">
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-                >
-                  <h2 className="type-item-title max-w-xl break-words transition-colors duration-150 ease-out text-pretty group-hover:text-foreground">
-                    {post.frontmatter.title}
-                  </h2>
-                </Link>
+          {/* Page Heading */}
+          <header className="mb-10 sm:mb-12">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-foreground text-balance">
+              {blogPageConfig.heading}
+            </h1>
+            <p className="mt-3.5 text-base sm:text-lg text-secondary leading-relaxed max-w-xl text-pretty font-sans">
+              {blogPageConfig.description}
+            </p>
+          </header>
 
-                <div className="type-meta mt-3 flex flex-wrap gap-3">
-                  <time dateTime={post.frontmatter.date}>
-                    {formatPostDate(post.frontmatter.date)}
-                  </time>
-                  <span>/</span>
-                  <span>{post.frontmatter.readingTime}</span>
-                </div>
-
-                <p className="type-body mt-3 max-w-xl">
-                  {post.frontmatter.description}
-                </p>
-              </article>
-            ))}
+          {/* Posts List matching '/' route's blog section */}
+          <div className="mt-8">
+            <BlogPreviewList posts={posts} />
           </div>
         </section>
       </Container>

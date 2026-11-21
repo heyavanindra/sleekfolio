@@ -78,3 +78,16 @@ export function formatPostDate(date: string) {
     year: "numeric",
   }).format(new Date(date));
 }
+
+export function formatEditorialDate(date: string) {
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      day: "numeric",
+      month: "long",
+      timeZone: "UTC",
+      year: "numeric",
+    }).format(new Date(date));
+  } catch {
+    return date;
+  }
+}

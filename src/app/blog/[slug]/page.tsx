@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
+import { Calendar, Undo2 } from "lucide-react";
 import Container from "@/component/container";
 import { BlogContent } from "@/components/blog/blog-content";
+import { BlogShareButton } from "@/components/blog/blog-share-button";
 import { SiteNav } from "@/components/site-nav";
 import { blogPostConfig } from "@/config";
 import {
-  formatPostDate,
+  formatEditorialDate,
   getBlogPostBySlug,
   getPublishedBlogPosts,
 } from "@/lib/blog";
@@ -38,6 +41,13 @@ export async function generateMetadata({
   return {
     title: `${post.frontmatter.title} | ${blogPostConfig.titleSuffix}`,
     description: post.frontmatter.description,
+    openGraph: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+      images: post.frontmatter.image
+        ? [{ url: post.frontmatter.image }]
+        : undefined,
+    },
   };
 }
 
@@ -50,44 +60,65 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main id="main-content" className="portfolio-grid-background">
+    <main id="main-content" className="portfolio-grid-background min-h-screen">
       <SiteNav />
       <Container>
-        <article className="pt-14 pb-24 md:pt-16">
-          <Link href={blogPostConfig.backHref} className="portfolio-link">
-            {blogPostConfig.backLabel}
-          </Link>
+        <article className="pt-10 pb-28 sm:pt-14 sm:pb-36">
+          {/* Back to Blog Navigation */}
+          <div className="mb-6 sm:mb-8">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-secondary hover:text-foreground transition-colors group"
+            >
+              <Undo2 className="size-3.5 sm:size-4 transition-transform group-hover:-translate-x-0.5" />
+              <span>Back to Blog</span>
+            </Link>
+          </div>
 
-          <header className="mt-10 border-b border-border pb-10">
-            <div className="flex flex-wrap gap-2">
-              {post.frontmatter.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="type-caption rounded-md border border-border px-2 py-1 corner-squircle"
-                  translate="no"
-                >
-                  {tag}
-                </span>
-              ))}
+          {/* Featured Hero Banner Image */}
+          {post.frontmatter.image && (
+            <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-[#141416] shadow-2xl">
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full">
+                <Image
+                  src={post.frontmatter.image}
+                  alt={post.frontmatter.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  className="object-cover transition-transform duration-500 hover:scale-[1.01]"
+                />
+              </div>
             </div>
+          )}
 
-            <h1 className="type-page-title mt-6 break-words text-balance">
+          {/* Post Header */}
+          <header className="mt-8 sm:mt-10">
+            {/* Title: Big Editorial Serif */}
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-medium leading-[1.18] tracking-tight text-foreground text-balance">
               {post.frontmatter.title}
             </h1>
 
-            <p className="type-body-lg mt-6 max-w-2xl text-pretty">
+            {/* Subtitle / Description */}
+            <p className="mt-3.5 sm:mt-4 text-base sm:text-lg text-secondary leading-relaxed max-w-2xl text-pretty font-sans">
               {post.frontmatter.description}
             </p>
 
-            <div className="type-meta mt-6 flex flex-wrap gap-3">
-              <time dateTime={post.frontmatter.date} className="type-meta">
-                {formatPostDate(post.frontmatter.date)}
-              </time>
-              <span>/</span>
-              <span>{post.frontmatter.readingTime}</span>
+            {/* Metadata & Actions Bar */}
+            <div className="mt-6 flex items-center justify-between gap-4 border-b border-border/60 pb-6">
+              <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-secondary">
+                <Calendar className="size-3.5 sm:size-4 text-secondary/70 shrink-0" />
+                <time dateTime={post.frontmatter.date}>
+                  {formatEditorialDate(post.frontmatter.date)}
+                </time>
+                <span className="opacity-40">·</span>
+                <span>{post.frontmatter.readingTime}</span>
+              </div>
+
+              <BlogShareButton title={post.frontmatter.title} />
             </div>
           </header>
 
+          {/* Article Body */}
           <BlogContent content={post.content} />
         </article>
       </Container>
