@@ -1,6 +1,6 @@
 export const projectsConfig = {
   section: {
-    label: "Featured Work",
+    label: "I Love building things",
   },
   actionLabels: {
     live: "Live",
@@ -12,6 +12,7 @@ export const projectsConfig = {
       description:
         "Real-time collaborative whiteboard built with WebSockets, Redis, and PostgreSQL for low-latency multiplayer collaboration.",
       stack: ["Next.js", "WebSockets", "Redis", "PostgreSQL"],
+      image: "/thecoffeeroom.png",
       live: "https://thecoffeeroom.in",
       github: "https://github.com/heyavanindra/thecoffeeroom",
     },
@@ -20,8 +21,11 @@ export const projectsConfig = {
       description:
         "Invoice generation platform with live PDF previews, dynamic forms, and schema-driven validation.",
       stack: ["Next.js", "TypeScript", "React Hook Form", "Bun"],
+      image: "/fastinvo.png",
       live: "https://fastinvo.aviii.xyz",
       github: "https://github.com/heyavanindra/fastinvo",
     },
   ],
 };
+
+export type ProjectItem = (typeof projectsConfig.items)[number];

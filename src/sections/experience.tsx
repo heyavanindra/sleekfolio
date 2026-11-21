@@ -1,9 +1,11 @@
 import { CompanyLogos } from "@/components/company-logos";
+import { ProjectTechAvatarGroup } from "@/components/project-tech-avatar-group";
 import { experienceConfig } from "@/config";
 
-const Experience = () => {
+export default function Experience() {
   return (
     <section id="experience" className="mt-20 scroll-mt-20 md:mt-24">
+      {/* Section Header */}
       <div className="mb-8 flex min-w-0 items-center gap-4">
         <h2 className="type-section-label shrink-0">
           {experienceConfig.section.label}
@@ -11,8 +13,13 @@ const Experience = () => {
         <div className="h-px flex-1 bg-border" />
       </div>
 
+      {/* Experience Entries */}
       <div className="divide-y divide-border/60">
         {experienceConfig.items.map((experience) => {
+          const { start, end } = formatExperiencePeriod(
+            experience.startDate,
+            experience.endDate,
+          );
           const LogoComponent =
             "logoId" in experience && experience.logoId
               ? CompanyLogos[experience.logoId as keyof typeof CompanyLogos]
@@ -23,6 +30,7 @@ const Experience = () => {
               key={experience.company}
               className="py-10 first:pt-2 last:pb-2 md:py-14"
             >
+              {/* Company Header */}
               <div className="flex items-start gap-3 sm:gap-3.5">
                 {LogoComponent ? (
                   <div className="flex h-[29px] w-6 shrink-0 items-center justify-center text-foreground md:h-8 md:w-7">
@@ -43,17 +51,15 @@ const Experience = () => {
 
                     <div className="pt-0.5 sm:pt-0 sm:shrink-0">
                       <span className="type-meta whitespace-nowrap">
-                        {formatExperiencePeriod(
-                          experience.startDate,
-                          experience.endDate,
-                        )}
+                        {start} – {end || "Present"}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <ul className="mt-5 list-disc space-y-2.5 pl-4 text-sm leading-relaxed text-secondary marker:text-neutral-400 sm:mt-6 sm:space-y-3 sm:text-[15px]">
+              {/* Achievements / Points */}
+              <ul className="mt-5 list-disc space-y-2.5 pl-4 text-sm leading-relaxed text-secondary marker:text-neutral-400 sm:mt-6 sm:space-y-3 sm:text-[15px] max-w-2xl">
                 {experience.highlights.map((highlight) => (
                   <li key={highlight.text} className="pl-1">
                     {highlight.emphasize
@@ -65,13 +71,24 @@ const Experience = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Tech Stack Icons */}
+              {experience.stack && experience.stack.length > 0 && (
+                <div className="mt-5 pl-4 sm:pl-5">
+                  <ProjectTechAvatarGroup
+                    label={`${experience.company} tech stack`}
+                    stack={experience.stack}
+                    className="mt-0"
+                  />
+                </div>
+              )}
             </article>
           );
         })}
       </div>
     </section>
   );
-};
+}
 
 function renderHighlightedText(text: string, highlight: string) {
   const [before, after] = text.split(highlight);
@@ -93,9 +110,7 @@ function formatExperiencePeriod(startDate: string, endDate: string | null) {
   });
 
   const start = formatter.format(new Date(startDate));
-  const end = endDate ? formatter.format(new Date(endDate)) : "Present";
+  const end = endDate ? formatter.format(new Date(endDate)) : null;
 
-  return `${start} - ${end}`;
+  return { start, end };
 }
-
-export default Experience;

@@ -106,24 +106,24 @@ export function ProjectTechAvatarGroup({
                         ...(shouldReduceMotion
                           ? { duration: 0.12, ease: "easeOut" }
                           : {
-                              damping: 18,
-                              stiffness: 260,
-                              type: "spring",
-                            }),
+                            damping: 18,
+                            stiffness: 260,
+                            type: "spring",
+                          }),
                       },
                     }}
                     exit={
                       shouldReduceMotion
                         ? {
-                            opacity: 0,
-                            transition: { duration: 0.08, ease: "easeOut" },
-                          }
+                          opacity: 0,
+                          transition: { duration: 0.08, ease: "easeOut" },
+                        }
                         : {
-                            opacity: 0,
-                            y: 4,
-                            scale: 0.98,
-                            transition: { duration: 0.08, ease: "easeOut" },
-                          }
+                          opacity: 0,
+                          y: 4,
+                          scale: 0.98,
+                          transition: { duration: 0.08, ease: "easeOut" },
+                        }
                     }
                     style={
                       shouldReduceMotion ? undefined : { rotate, x: translateX }

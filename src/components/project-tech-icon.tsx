@@ -1,7 +1,21 @@
 import { type HTMLMotionProps, motion } from "motion/react";
 import type { ReactNode } from "react";
 import StackIcon, { type IconName } from "tech-stack-icons";
+import { Devicons } from "@/components/devicons";
 import { cn } from "@/utils/cn";
+
+const deviconMap: Record<string, keyof typeof Devicons> = {
+  React: "react",
+  Vue: "vue",
+  "Next.js": "nextjs",
+  "Node.js": "nodejs",
+  Redis: "redis",
+  PostgreSQL: "postgresql",
+  MongoDB: "mongodb",
+  Express: "express",
+  "Bull Queue": "bull",
+  MERN: "react",
+};
 
 const projectTechIconNames: Record<string, IconName> = {
   "Next.js": "nextjs",
@@ -24,10 +38,12 @@ export function ProjectTechIcon({
   title,
   ...props
 }: ProjectTechIconProps) {
+  const deviconKey = deviconMap[name];
+  const DeviconComponent = deviconKey ? Devicons[deviconKey] : null;
   const iconName = projectTechIconNames[name];
   const isReactHookForm = name === "React Hook Form";
 
-  if (!iconName && !isReactHookForm) {
+  if (!DeviconComponent && !iconName && !isReactHookForm) {
     return null;
   }
 
@@ -40,7 +56,15 @@ export function ProjectTechIcon({
       title={title ?? name}
       {...props}
     >
-      {isReactHookForm ? (
+      {DeviconComponent ? (
+        <DeviconComponent
+          className={cn(
+            "size-[1.125rem]",
+            deviconKey === "nextjs" ? "size-5" : "",
+            deviconKey === "bull" ? "size-4" : "",
+          )}
+        />
+      ) : isReactHookForm ? (
         <svg
           aria-hidden="true"
           className="size-[1.125rem]"

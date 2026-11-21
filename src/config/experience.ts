@@ -1,6 +1,19 @@
+export type ExperienceItem = {
+  company: string;
+  logoId: "mastersUnion" | "niveshJano";
+  role: string;
+  startDate: string;
+  endDate: string | null;
+  stack?: string[];
+  highlights: Array<{
+    text: string;
+    emphasize?: string;
+  }>;
+};
+
 export const experienceConfig = {
   section: {
-    label: "Experience",
+    label: "Companies I've worked with",
   },
   items: [
     {
@@ -9,12 +22,14 @@ export const experienceConfig = {
       role: "Software Developer",
       startDate: "2026-01-01",
       endDate: null,
-      logo: {
-        src: "/assets/mastersunion.png",
-        alt: "Masters' Union",
-        width: 120,
-        height: 40,
-      },
+      stack: [
+        "React",
+        "Next.js",
+        "Node.js",
+        "Redis",
+        "Bull Queue",
+        "PostgreSQL",
+      ],
       highlights: [
         {
           text: "Reduced real-time response latency by 40%+ by introducing Redis caching and Bull Queue for asynchronous processing.",
@@ -37,12 +52,7 @@ export const experienceConfig = {
       role: "Technical Development Intern",
       startDate: "2025-04-01",
       endDate: "2025-10-01",
-      logo: {
-        src: "/assets/niveshjano.png",
-        alt: "Nivesh Jano",
-        width: 120,
-        height: 40,
-      },
+      stack: ["React", "Next.js", "Node.js", "Express", "MongoDB"],
       highlights: [
         {
           text: "Built 7+ production-grade fintech modules using MERN and Next.js.",

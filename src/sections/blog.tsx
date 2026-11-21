@@ -14,9 +14,6 @@ export default function Blog() {
           {blogSectionConfig.label}
         </h2>
         <div className="h-px flex-1 bg-border" />
-        <Link href={blogSectionConfig.href} className="portfolio-link">
-          {blogSectionConfig.allPostsLabel}
-        </Link>
       </div>
 
       <BlogPreviewList posts={posts} />

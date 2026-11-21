@@ -1,7 +1,7 @@
 import { siteConfig } from "./site";
 
 export const blogSectionConfig = {
-  label: "Writing",
+  label: "Sharing knowledge as I learn",
   href: "/blog",
   allPostsLabel: "All Posts",
   viewMoreLabel: "View More",
