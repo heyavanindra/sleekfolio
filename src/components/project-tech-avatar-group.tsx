@@ -14,11 +14,13 @@ import { ProjectTechIcon } from "@/components/project-tech-icon";
 type ProjectTechAvatarGroupProps = {
   label: string;
   stack: string[];
+  className?: string;
 };
 
 export function ProjectTechAvatarGroup({
   label,
   stack,
+  className,
 }: ProjectTechAvatarGroupProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const animationFrameRef = useRef<number | null>(null);

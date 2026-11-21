@@ -5,6 +5,23 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/photos",
+        destination: "/photography",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

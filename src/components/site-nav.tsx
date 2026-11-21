@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import Container from "@/component/container";
 
@@ -10,6 +12,10 @@ const navItems = [
     label: "Writing",
     href: "/blog",
   },
+  // {
+  //   label: "Archive",
+  //   href: "/archive",
+  // },
   {
     label: "Contact",
     href: "/#contact",

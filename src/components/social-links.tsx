@@ -1,4 +1,5 @@
 import { SocialIcons } from "@/components/social-icons";
+import { SoundFeedback } from "@/components/sound-feedback";
 import { cn } from "@/utils/cn";
 
 type SocialIconKey = keyof typeof SocialIcons;
@@ -32,14 +33,11 @@ export function SocialLinks({ links }: SocialLinksProps) {
         const Icon = SocialIcons[icon];
 
         return (
-          <a
-            key={label}
-            href={href}
-            aria-label={label}
-            className={socialLinkClass}
-          >
-            <Icon aria-hidden="true" focusable="false" className="size-5" />
-          </a>
+          <SoundFeedback key={label}>
+            <a href={href} aria-label={label} className={socialLinkClass}>
+              <Icon aria-hidden="true" focusable="false" className="size-5" />
+            </a>
+          </SoundFeedback>
         );
       })}
     </div>
