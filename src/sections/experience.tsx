@@ -6,6 +6,7 @@ import { useState } from "react";
 import { CompanyLogos } from "@/components/company-logos";
 import { ProjectTechAvatarGroup } from "@/components/project-tech-avatar-group";
 import { experienceConfig } from "@/config";
+import { playClickSound } from "@/lib/sound";
 import { cn } from "@/utils/cn";
 
 export default function Experience() {
@@ -68,11 +69,12 @@ export default function Experience() {
                 {/* Role Designation with Blog-style Hover Backdrop */}
                 <button
                   type="button"
-                  onClick={() =>
+                  onClick={() => {
+                    playClickSound();
                     setExpandedCompany((prev) =>
                       prev === experience.company ? null : experience.company,
-                    )
-                  }
+                    );
+                  }}
                   onMouseEnter={() => setHoveredRole(experience.company)}
                   onMouseLeave={() => setHoveredRole(null)}
                   onFocus={() => setHoveredRole(experience.company)}
@@ -199,7 +201,7 @@ function formatPeriodAndDuration(startDate: string, endDate: string | null) {
   const startFormatted = `${String(start.getUTCMonth() + 1).padStart(2, "0")}.${start.getUTCFullYear()}`;
   const endFormatted = endDate
     ? `${String(end.getUTCMonth() + 1).padStart(2, "0")}.${end.getUTCFullYear()}`
-    : "∞";
+    : "Present";
 
   const startYear = start.getUTCFullYear();
   const startMonth = start.getUTCMonth();
