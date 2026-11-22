@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main id="main-content" className="portfolio-grid-background min-h-screen">
+    <main id="main-content" className="relative z-10 min-h-screen">
       <SiteNav />
       <Container>
         <article className="pt-10 pb-28 sm:pt-14 sm:pb-36">

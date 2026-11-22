@@ -22,7 +22,7 @@ export default function ArchivePage() {
   return (
     <main
       id="main-content"
-      className="portfolio-grid-background min-h-screen flex flex-col"
+      className="relative z-10 min-h-screen flex flex-col"
     >
       <SiteNav />
       <div className="relative mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-0 flex-1 flex flex-col">

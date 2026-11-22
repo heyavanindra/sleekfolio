@@ -65,7 +65,7 @@ export default function RootLayout({
         lang="en"
         className={`${GoeistSans.variable} ${GoeistMono.variable} ${newsreader.variable} h-full antialiased`}
       >
-        <body className="flex min-h-full flex-col">
+        <body className="portfolio-grid-background flex min-h-full flex-col">
           <a
             href="#main-content"
             className="sr-only fixed top-3 left-3 z-50 rounded-sm bg-foreground px-3 py-2 text-sm font-medium text-background focus-visible:not-sr-only focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

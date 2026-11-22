@@ -30,9 +30,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        "group relative flex flex-col rounded-2xl border border-border/40 bg-white/[0.008] p-3.5 sm:p-4",
-        "transition-[box-shadow,border-color,background-color] duration-240 ease-[cubic-bezier(0.23,1,0.32,1)]",
-        "[@media(hover:hover)_and_(pointer:fine)]:hover:border-white/15 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/[0.02]",
+        "group relative flex flex-col rounded-2xl bg-[#151412] p-3.5 sm:p-4",
+        "transition-[box-shadow,background-color] duration-240 ease-[cubic-bezier(0.23,1,0.32,1)]",
+        "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#1c1b18]",
         "[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.05)]",
         "active:scale-[0.995] motion-reduce:transition-none motion-reduce:transform-none",
       )}
@@ -46,15 +46,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
         aria-hidden="true"
       />
 
-      {/* Subtle border reveal spotlight */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/[0.14] opacity-0 transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 motion-reduce:hidden"
-        style={{
-          maskImage: `radial-gradient(320px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 70%)`,
-          WebkitMaskImage: `radial-gradient(320px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 70%)`,
-        }}
-        aria-hidden="true"
-      />
 
       {/* Visual preview window with natural fit & glass glare */}
       <Link
@@ -62,7 +53,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Open ${project.title} live preview`}
-        className="relative block w-full overflow-hidden rounded-xl border border-white/[0.06] bg-neutral-950/80 transition-[border-color] duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:border-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="relative block w-full overflow-hidden rounded-xl border border-white/[0.08] bg-[#0c0d0f] transition-[border-color] duration-200 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:border-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <Image
           src={project.image}
@@ -140,7 +131,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <ProjectTechAvatarGroup
             label={`${project.title} tech stack`}
             stack={project.stack}
-            // className="mt-0"
+          // className="mt-0"
           />
         </div>
       </div>

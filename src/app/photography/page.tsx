@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function PhotographyPage() {
   return (
-    <main id="main-content" className="portfolio-grid-background min-h-screen">
+    <main id="main-content" className="relative z-10 min-h-screen">
       <SiteNav />
 
       {/* 1. Masthead: anchored to standard narrow reading column (~672px) */}

@@ -1,6 +1,6 @@
 export const projectsConfig = {
   section: {
-    label: "I Love building things",
+    label: "I love building things",
   },
   actionLabels: {
     live: "Live",

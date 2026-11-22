@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main
       id="main-content"
-      className="portfolio-grid-background animate-blur-in overflow-x-hidden"
+      className="animate-blur-in relative z-10 overflow-x-hidden"
     >
       <SiteNav />
       <Container>

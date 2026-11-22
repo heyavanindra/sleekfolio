@@ -2,6 +2,8 @@ export type ExperienceItem = {
   company: string;
   logoId: "mastersUnion" | "niveshJano";
   role: string;
+  location?: string;
+  employmentType?: string;
   startDate: string;
   endDate: string | null;
   stack?: string[];
@@ -13,13 +15,15 @@ export type ExperienceItem = {
 
 export const experienceConfig = {
   section: {
-    label: "Companies I've worked with",
+    label: "Experience",
   },
   items: [
     {
       company: "Masters' Union",
       logoId: "mastersUnion" as const,
       role: "Software Developer",
+      location: "Gurugram, India",
+      employmentType: "Full-time",
       startDate: "2026-01-01",
       endDate: null,
       stack: [
@@ -50,6 +54,8 @@ export const experienceConfig = {
       company: "Nivesh Jano",
       logoId: "niveshJano" as const,
       role: "Technical Development Intern",
+      location: "Lucknow, India",
+      employmentType: "Internship",
       startDate: "2025-04-01",
       endDate: "2025-10-01",
       stack: ["React", "Next.js", "Node.js", "Express", "MongoDB"],
