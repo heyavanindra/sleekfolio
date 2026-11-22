@@ -2,6 +2,7 @@
 
 import { Link } from "next-view-transitions";
 import Container from "@/component/container";
+import { SiteLogo } from "@/components/site-logo";
 
 const navItems = [
   {
@@ -32,7 +33,7 @@ export function SiteNav() {
             aria-label="Avanindra Tiwari home"
             className="site-brand-mark"
           >
-            AT.
+            <SiteLogo className="h-5 sm:h-[22px] w-auto transition-transform duration-200 ease-out hover:scale-[1.03]" />
           </Link>
 
           <div className="site-nav-items flex items-center gap-5">

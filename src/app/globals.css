@@ -388,7 +388,6 @@ body {
     transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.site-brand-mark::after,
 .site-nav-link::after {
   position: absolute;
   right: 0;
@@ -534,7 +533,6 @@ body {
     transform: translateY(-1px);
   }
 
-  .site-brand-mark:hover::after,
   .site-nav-link:hover::after {
     opacity: 1;
     transform: scaleX(1);
@@ -573,7 +571,6 @@ body {
     transition: color 150ms ease-out;
   }
 
-  .site-brand-mark::after,
   .site-nav-link::after {
     transition: none;
   }
