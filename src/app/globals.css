@@ -13,7 +13,7 @@ html::-webkit-scrollbar {
 }
 
 :root {
-  --background: #050505;
+  --background: #1e1e1e;
   --foreground: #e7e7e7;
   --secondary: #9b9b9b;
   --accent: #8b7cf8;
