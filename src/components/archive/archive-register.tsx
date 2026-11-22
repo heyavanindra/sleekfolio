@@ -330,9 +330,9 @@ export function ArchiveRegister({ entries }: ArchiveRegisterProps) {
 
                     {/* Right column: text column */}
                     <div className="min-w-0 flex-1">
-                      {/* Title row: serif 24px/1.2, tracking -0.01em, text-balance, warm off-white */}
+                      {/* Title row: serif 24px/1.2, tracking -0.01em, text-pretty, warm off-white */}
                       <div className="flex items-baseline justify-between gap-4">
-                        <h2 className="font-serif text-[24px] font-medium leading-[1.2] tracking-[-0.01em] text-balance text-foreground line-clamp-2">
+                        <h2 className="font-serif text-[24px] font-medium leading-[1.2] tracking-[-0.01em] text-pretty text-foreground line-clamp-2">
                           <a
                             href={entry.sourceUrl}
                             target="_blank"

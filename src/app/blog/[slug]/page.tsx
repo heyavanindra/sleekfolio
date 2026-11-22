@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Post Header */}
           <header className="mt-8 sm:mt-10">
             {/* Title: Big Editorial Serif */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-medium leading-[1.18] tracking-tight text-foreground text-balance">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-medium leading-[1.18] tracking-tight text-foreground text-pretty">
               {post.frontmatter.title}
             </h1>
 

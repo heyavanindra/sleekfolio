@@ -3,6 +3,7 @@ export type BlogFrontmatter = {
   description: string;
   image?: string;
   date: string;
+  publishedAt?: string;
   readingTime: string;
   tags: string[];
   isPublished: boolean;

@@ -25,7 +25,19 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
-  const frontmatter = data as BlogFrontmatter;
+  
+  const rawDate = data.date || data.publishedAt;
+  const isPublished = data.isPublished !== undefined ? Boolean(data.isPublished) : true;
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  const readingTime = data.readingTime || `${Math.max(1, Math.ceil(words / 200))} min read`;
+
+  const frontmatter: BlogFrontmatter = {
+    ...data,
+    date: rawDate,
+    publishedAt: data.publishedAt || rawDate,
+    readingTime,
+    isPublished,
+  } as BlogFrontmatter;
 
   if (
     !frontmatter.title ||

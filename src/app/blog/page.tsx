@@ -30,7 +30,7 @@ export default function BlogPage() {
 
           {/* Page Heading */}
           <header className="mb-10 sm:mb-12">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-foreground text-balance">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-foreground text-pretty">
               {blogPageConfig.heading}
             </h1>
             <p className="mt-3.5 text-base sm:text-lg text-secondary leading-relaxed max-w-xl text-pretty font-sans">
