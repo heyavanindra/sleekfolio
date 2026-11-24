@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
-import { Undo2 } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Undo03Icon } from "@hugeicons/core-free-icons";
 import Container from "@/component/container";
 import { BlogPreviewList } from "@/components/blog/blog-preview-list";
 import { SiteNav } from "@/components/site-nav";
@@ -23,7 +24,12 @@ export default function BlogPage() {
               href="/"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-secondary hover:text-foreground transition-colors group"
             >
-              <Undo2 className="size-3.5 sm:size-4 transition-transform group-hover:-translate-x-0.5" />
+              <HugeiconsIcon
+                icon={Undo03Icon}
+                size={15}
+                strokeWidth={1.8}
+                className="transition-transform group-hover:-translate-x-0.5"
+              />
               <span>Back</span>
             </Link>
           </div>

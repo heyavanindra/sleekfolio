@@ -1,6 +1,7 @@
 "use client";
 
-import { Check, Share2 } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Share01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
 import { useState } from "react";
 
 interface BlogShareButtonProps {
@@ -49,9 +50,19 @@ export function BlogShareButton({ title, url }: BlogShareButtonProps) {
       className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-foreground transition-all duration-150 hover:bg-white/[0.08] hover:border-white/20 active:scale-[0.98] select-none"
     >
       {copied ? (
-        <Check className="size-3.5 text-emerald-400" />
+        <HugeiconsIcon
+          icon={Tick01Icon}
+          size={14}
+          strokeWidth={2}
+          className="text-emerald-400"
+        />
       ) : (
-        <Share2 className="size-3.5 text-secondary" />
+        <HugeiconsIcon
+          icon={Share01Icon}
+          size={14}
+          strokeWidth={1.8}
+          className="text-secondary"
+        />
       )}
       <span>{copied ? "Copied!" : "Share"}</span>
     </button>

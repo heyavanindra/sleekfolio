@@ -1,6 +1,7 @@
 "use client";
 
-import { Volume2, VolumeX } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { VolumeHighIcon, VolumeMute01Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useState } from "react";
 import {
   SOUND_TOGGLE_EVENT,
@@ -95,9 +96,19 @@ export function SoundToggle() {
         className="site-nav-link flex items-center justify-center p-1.5 -m-1.5 rounded-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         {muted ? (
-          <VolumeX className="size-[15px] opacity-60 hover:opacity-100 transition-opacity" />
+          <HugeiconsIcon
+            icon={VolumeMute01Icon}
+            size={16}
+            strokeWidth={1.8}
+            className="opacity-60 hover:opacity-100 transition-opacity"
+          />
         ) : (
-          <Volume2 className="size-[15px] opacity-80 hover:opacity-100 transition-opacity" />
+          <HugeiconsIcon
+            icon={VolumeHighIcon}
+            size={16}
+            strokeWidth={1.8}
+            className="opacity-80 hover:opacity-100 transition-opacity"
+          />
         )}
       </button>
 

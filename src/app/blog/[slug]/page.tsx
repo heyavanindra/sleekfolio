@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
-import { Calendar, Undo2 } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  Calendar03Icon,
+  Undo03Icon,
+} from "@hugeicons/core-free-icons";
 import Container from "@/component/container";
 import { BlogContent } from "@/components/blog/blog-content";
 import { BlogShareButton } from "@/components/blog/blog-share-button";
@@ -70,7 +74,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               href="/blog"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-secondary hover:text-foreground transition-colors group"
             >
-              <Undo2 className="size-3.5 sm:size-4 transition-transform group-hover:-translate-x-0.5" />
+              <HugeiconsIcon
+                icon={Undo03Icon}
+                size={15}
+                strokeWidth={1.8}
+                className="transition-transform group-hover:-translate-x-0.5"
+              />
               <span>Back to Blog</span>
             </Link>
           </div>
@@ -106,7 +115,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Metadata & Actions Bar */}
             <div className="mt-6 flex items-center justify-between gap-4 border-b border-border/60 pb-6">
               <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-secondary">
-                <Calendar className="size-3.5 sm:size-4 text-secondary/70 shrink-0" />
+                <HugeiconsIcon
+                  icon={Calendar03Icon}
+                  size={15}
+                  strokeWidth={1.8}
+                  className="text-secondary/70 shrink-0"
+                />
                 <time dateTime={post.frontmatter.date}>
                   {formatEditorialDate(post.frontmatter.date)}
                 </time>

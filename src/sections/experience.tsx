@@ -1,6 +1,10 @@
 "use client";
 
-import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  UnfoldLessIcon,
+  UnfoldMoreIcon,
+} from "@hugeicons/core-free-icons";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { CompanyLogos } from "@/components/company-logos";
@@ -120,9 +124,17 @@ export default function Experience() {
                     )}
                   >
                     {isOpen ? (
-                      <ChevronsDownUp className="size-3.5 sm:size-4" />
+                      <HugeiconsIcon
+                        icon={UnfoldLessIcon}
+                        size={15}
+                        strokeWidth={1.8}
+                      />
                     ) : (
-                      <ChevronsUpDown className="size-3.5 sm:size-4" />
+                      <HugeiconsIcon
+                        icon={UnfoldMoreIcon}
+                        size={15}
+                        strokeWidth={1.8}
+                      />
                     )}
                   </span>
                 </button>
