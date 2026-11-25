@@ -5,9 +5,9 @@ import { Newsreader } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { ConcreteBackground } from "@/components/concrete-background";
 import { FloatingActionDock } from "@/components/floating-action-dock";
 import { GlobalClickSound } from "@/components/global-click-sound";
+import { Plum } from "@/components/plum";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -73,7 +73,7 @@ export default function RootLayout({
             Skip to main content
           </a>
           <Analytics />
-          <ConcreteBackground />
+          <Plum />
           <GlobalClickSound />
           {children}
           <FloatingActionDock />
