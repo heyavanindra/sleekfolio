@@ -7,7 +7,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { FloatingActionDock } from "@/components/floating-action-dock";
 import { GlobalClickSound } from "@/components/global-click-sound";
-import { Plum } from "@/components/plum";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -73,7 +72,6 @@ export default function RootLayout({
             Skip to main content
           </a>
           <Analytics />
-          <Plum />
           <GlobalClickSound />
           {children}
           <FloatingActionDock />
